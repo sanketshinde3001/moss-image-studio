@@ -255,32 +255,32 @@ textarea.bulk { min-height: 220px; }
 <body>
 <div class="app">
   <aside>
-    <div class="brand"><h1>MOSS Image Studio</h1><a class="linkbtn" href="https://buymeacoffee.com/sanketshinde" target="_blank" rel="noopener noreferrer" title="Support MOSS Image Studio">☕ Support</a><button class="privbtn" id="privBtn" title="Private mode: temporary files only; no job logs or gallery metadata">🔒 Private</button></div>
+    <div class="brand"><h1 data-i18n="app.title">MOSS Image Studio</h1><a class="linkbtn" href="https://buymeacoffee.com/sanketshinde" target="_blank" rel="noopener noreferrer" data-i18n-title="brand.supportTitle" title="Support MOSS Image Studio" data-i18n="brand.support">☕ Support</a><button class="privbtn" id="privBtn" data-i18n-title="brand.privateTitle" title="Private mode: temporary files only; no job logs or gallery metadata" data-i18n="brand.private">🔒 Private</button></div>
     <div class="controls">
       <div class="seg tabs" id="tabs">
 
-        <button data-mode="gen" class="on">Generate</button>
+        <button data-mode="gen" class="on" data-i18n="tab.generate">Generate</button>
       </div>
 
-      <div class="field"><div class="label">MOSS model</div><select id="model"><option value="toxicdog/MOSS-Image-SFT-Turbo-INT8-ConvRot">INT8 Turbo 8-step · default when installed</option><option value="OpenMOSS-Team/MOSS-Image-SFT">BF16 SFT · Turbo 4-step</option><option value="OpenMOSS-Team/MOSS-Image-Base">BF16 Base</option></select><small id="modelInfo">CUDA · WeeLLM streaming · 4 GB preset · text to image</small></div>
-<div class="privnote hidden" id="privNote">Private mode. Nothing is saved unless you download or keep it.</div>
-      <div class="field hidden" id="int8ComputeRow"><div class="label">Experimental INT8 compute</div><select id="int8Compute"><option value="native">Native INT8 · Triton</option><option value="bf16">Compatibility · BF16 decode</option></select></div>
+      <div class="field"><div class="label" data-i18n="form.model">MOSS model</div><select id="model"><option value="toxicdog/MOSS-Image-SFT-Turbo-INT8-ConvRot" data-i18n="form.modelInt8">INT8 Turbo 8-step · default when installed</option><option value="OpenMOSS-Team/MOSS-Image-SFT" data-i18n="form.modelSft">BF16 SFT · Turbo 4-step</option><option value="OpenMOSS-Team/MOSS-Image-Base" data-i18n="form.modelBase">BF16 Base</option></select><small id="modelInfo">CUDA · WeeLLM streaming · 4 GB preset · text to image</small></div>
+<div class="privnote hidden" id="privNote" data-i18n="form.privNote">Private mode. Nothing is saved unless you download or keep it.</div>
+      <div class="field hidden" id="int8ComputeRow"><div class="label" data-i18n="form.int8Compute">Experimental INT8 compute</div><select id="int8Compute"><option value="native">Native INT8 · Triton</option><option value="bf16">Compatibility · BF16 decode</option></select></div>
 
       <div class="field edit-only hidden">
-        <div class="label">Images <span class="val" id="refcount">0 / 3</span></div>
+        <div class="label"><span data-i18n="form.images">Images</span> <span class="val" id="refcount">0 / 3</span></div>
         <div class="refs" id="refs"></div>
-        <div class="drop" id="drop" title="You can also paste an image, or press Edit on any gallery image">Drop, paste or <u>choose</u> an image</div>
+        <div class="drop" id="drop" data-i18n-title="form.dropTitle" title="You can also paste an image, or press Edit on any gallery image"><span data-i18n="form.dropA">Drop, paste or</span> <u data-i18n="form.dropChoose">choose</u> <span data-i18n="form.dropB">an image</span></div>
         <input type="file" id="file" accept="image/*" multiple hidden>
         <div class="assist hidden" id="assist">
-          <button class="linkbtn" id="suggestBtn" title="Unavailable assistant looks at image #1 and suggests edits">✨ Suggest edits</button>
-          <button class="linkbtn" id="describeBtn" title="Unavailable assistant writes a prompt that describes image #1">Describe</button>
+          <button class="linkbtn" id="suggestBtn" data-i18n-title="form.suggestTitle" title="Unavailable assistant looks at image #1 and suggests edits" data-i18n="form.suggest">✨ Suggest edits</button>
+          <button class="linkbtn" id="describeBtn" data-i18n-title="form.describeTitle" title="Unavailable assistant writes a prompt that describes image #1" data-i18n="form.describe">Describe</button>
         </div>
         <div class="chips ai hidden" id="aiChips"></div>
       </div>
 
       <div class="field">
-        <div class="label"><span id="promptLabel">Prompt</span>
-          <span class="labelbtns"><button id="bulkBtn" class="bulkbtn" title="Bulk: queue many prompts at once. Put an empty line between prompts.">Bulk</button><button id="favBtn" title="Save this prompt to favorites">☆</button><button id="histBtn" title="Recent and favorite prompts">🕘</button></span></div>
+        <div class="label"><span id="promptLabel" data-i18n="label.prompt">Prompt</span>
+          <span class="labelbtns"><button id="bulkBtn" class="bulkbtn" data-i18n-title="form.bulkTitle" title="Bulk: queue many prompts at once. Put an empty line between prompts." data-i18n="form.bulk">Bulk</button><button id="favBtn" data-i18n-title="form.favTitle" title="Save this prompt to favorites">☆</button><button id="histBtn" data-i18n-title="form.histTitle" title="Recent and favorite prompts">🕘</button></span></div>
         <textarea id="prompt"></textarea>
         <div class="bulkinfo hidden" id="bulkInfo"></div>
         <div class="chips gen-only" id="styleChips"></div>
@@ -288,168 +288,168 @@ textarea.bulk { min-height: 220px; }
       </div>
 
       <div class="field">
-        <div class="label">Speed</div>
+        <div class="label" data-i18n="label.speed">Speed</div>
         <div class="seg" id="presets">
-          <button data-p="turbo" disabled title="Download the Turbo adapter to enable this SFT preset">⚡ Turbo 4-step</button>
-          <button data-p="draft" title="Full model at 512 px, 12 steps">Draft</button>
-          <button data-p="balanced" title="Full model at 768 px, 30 steps">Balanced</button>
-          <button data-p="quality" title="Full model at 1024 px, 50 steps. Slow, for finals.">Quality</button>
+          <button data-p="turbo" disabled data-i18n-title="preset.turboTitle" title="Download the Turbo adapter to enable this SFT preset" data-i18n="preset.turbo">⚡ Turbo 4-step</button>
+          <button data-p="draft" data-i18n-title="preset.draftTitle" title="Full model at 512 px, 12 steps" data-i18n="preset.draft">Draft</button>
+          <button data-p="balanced" data-i18n-title="preset.balancedTitle" title="Full model at 768 px, 30 steps" data-i18n="preset.balanced">Balanced</button>
+          <button data-p="quality" data-i18n-title="preset.qualityTitle" title="Full model at 1024 px, 50 steps. Slow, for finals." data-i18n="preset.quality">Quality</button>
         </div>
-        <small id="turboStatus">Turbo is the default when its adapter is installed.</small>
+        <small id="turboStatus" data-i18n="preset.statusDefault">Turbo is the default when its adapter is installed.</small>
         <div class="presetrow">
-          <select id="myPresets" title="Your saved settings"><option value="">My presets</option></select>
-          <button class="iconbtn" id="savePreset" title="Save current settings as a preset">Save</button>
-          <button class="iconbtn hidden" id="delPreset" title="Delete this preset">✕</button>
+          <select id="myPresets" data-i18n-title="preset.mineTitle" title="Your saved settings"><option value="" data-i18n="preset.mine">My presets</option></select>
+          <button class="iconbtn" id="savePreset" data-i18n-title="preset.saveTitle" title="Save current settings as a preset" data-i18n="preset.save">Save</button>
+          <button class="iconbtn hidden" id="delPreset" data-i18n-title="preset.deleteTitle" title="Delete this preset">✕</button>
         </div>
       </div>
 
       <div class="field">
-        <div class="label">Size <span class="val" id="sizeVal">768 × 768</span></div>
+        <div class="label"><span data-i18n="label.size">Size</span> <span class="val" id="sizeVal">768 × 768</span></div>
         <div class="aspects" id="aspects"></div>
         <div class="seg" id="bases">
-          <button data-b="512">512</button><button data-b="768" class="on">768</button><button data-b="1024">1024</button><button data-b="custom">Custom</button>
+          <button data-b="512">512</button><button data-b="768" class="on">768</button><button data-b="1024">1024</button><button data-b="custom" data-i18n="form.custom">Custom</button>
         </div>
         <div class="row hidden" id="customSize">
-          <input type="number" id="cw" value="1024" step="16" min="256" max="1024" title="Width">
+          <input type="number" id="cw" value="1024" step="16" min="256" max="1024" data-i18n-title="form.width" title="Width">
           <span style="flex:none;color:var(--faint)">×</span>
-          <input type="number" id="ch" value="1024" step="16" min="256" max="1024" title="Height">
+          <input type="number" id="ch" value="1024" step="16" min="256" max="1024" data-i18n-title="form.height" title="Height">
         </div>
       </div>
 
       <details>
-        <summary>More settings</summary>
+        <summary data-i18n="form.more">More settings</summary>
         <div class="inner">
-          <label class="toggle locked" id="turboRow" title="Rapid-MOSS: four data-space steps, SFT only, no CFG or negative prompt"><span>Turbo 4-step</span>
+          <label class="toggle locked" id="turboRow" data-i18n-title="form.turboRowTitle" title="Rapid-MOSS: four data-space steps, SFT only, no CFG or negative prompt"><span data-i18n="form.turboRow">Turbo 4-step</span>
             <span class="switch"><input type="checkbox" id="turbo"><span></span></span></label>
-          <div class="field" id="schedRow" title="Matched shifts the LoRA's schedule to your output size. It looked sharper in tests.">
-            <div class="label">Turbo schedule</div>
-            <div class="seg" id="turboSched"><button data-v="matched" class="on">Matched to size</button><button data-v="trained">Original</button></div>
+          <div class="field" id="schedRow" data-i18n-title="form.schedTitle" title="Matched shifts the LoRA's schedule to your output size. It looked sharper in tests.">
+            <div class="label" data-i18n="form.turboSched">Turbo schedule</div>
+            <div class="seg" id="turboSched"><button data-v="matched" class="on" data-i18n="form.schedMatched">Matched to size</button><button data-v="trained" data-i18n="form.schedOriginal">Original</button></div>
           </div>
-          <div class="lockednote hidden" id="turboNote">Turbo uses four Rapid-MOSS steps. CFG, negative prompt, and ordinary sampler settings are skipped.</div>
+          <div class="lockednote hidden" id="turboNote" data-i18n="form.turboNote">Turbo uses four Rapid-MOSS steps. CFG, negative prompt, and ordinary sampler settings are skipped.</div>
 
           <div class="field turbo-lock">
-            <div class="label">Negative prompt</div>
-            <textarea id="negative" class="small" placeholder="Optional"></textarea>
+            <div class="label" data-i18n="form.negative">Negative prompt</div>
+            <textarea id="negative" class="small" data-i18n-placeholder="form.optional" placeholder="Optional"></textarea>
           </div>
-          <div class="field edit-only hidden" title="Resolution your image is read at. Higher keeps more detail and barely affects speed.">
-            <div class="label">Reference detail <span class="val" id="refMaxVal">1024 px</span></div>
+          <div class="field edit-only hidden" data-i18n-title="form.refMaxTitle" title="Resolution your image is read at. Higher keeps more detail and barely affects speed.">
+            <div class="label"><span data-i18n="form.refMax">Reference detail</span> <span class="val" id="refMaxVal">1024 px</span></div>
             <div class="seg" id="refMax"><button data-v="512">512</button><button data-v="768">768</button><button data-v="1024" class="on">1024</button></div>
           </div>
           <div class="field turbo-lock">
-            <div class="label">Steps <span class="val" id="stepsVal">16</span></div>
+            <div class="label"><span data-i18n="form.steps">Steps</span> <span class="val" id="stepsVal">16</span></div>
             <input type="range" id="steps" min="4" max="50" value="16">
           </div>
-          <div class="field turbo-lock" title="How closely to follow the prompt">
+          <div class="field turbo-lock" data-i18n-title="form.cfgTitle" title="How closely to follow the prompt">
             <div class="label">CFG <span class="val" id="cfgVal">6.0</span></div>
             <input type="range" id="cfg" min="1" max="10" step="0.5" value="3">
           </div>
-          <div class="field edit-only hidden turbo-lock" title="How closely to stick to the original image. 0 uses the CFG value.">
-            <div class="label">Image guidance <span class="val" id="imgCfgVal">auto</span></div>
+          <div class="field edit-only hidden turbo-lock" data-i18n-title="form.imgCfgTitle" title="How closely to stick to the original image. 0 uses the CFG value.">
+            <div class="label"><span data-i18n="form.imgCfg">Image guidance</span> <span class="val" id="imgCfgVal">auto</span></div>
             <input type="range" id="imgCfg" min="0" max="10" step="0.5" value="0">
           </div>
           <div class="field">
-            <div class="label">Seed</div>
+            <div class="label" data-i18n="form.seed">Seed</div>
             <div class="seed">
-              <input type="number" id="seed" value="-1" title="-1 picks a random seed">
-              <button class="iconbtn" id="dice" title="Random seed">🎲</button>
-              <button class="iconbtn" id="lockSeed" title="Keep this seed for the next run">🔒</button>
+              <input type="number" id="seed" value="-1" data-i18n-title="form.seedTitle" title="-1 picks a random seed">
+              <button class="iconbtn" id="dice" data-i18n-title="form.diceTitle" title="Random seed">🎲</button>
+              <button class="iconbtn" id="lockSeed" data-i18n-title="form.lockSeedTitle" title="Keep this seed for the next run">🔒</button>
             </div>
           </div>
           <div class="field">
-            <div class="label">Variations <span class="val" id="batchVal">1</span></div>
+            <div class="label"><span data-i18n="form.variations">Variations</span> <span class="val" id="batchVal">1</span></div>
             <input type="range" id="batch" min="1" max="4" value="1">
           </div>
-          <label class="toggle turbo-lock" title="EasyCache reuses similar steps. About 1.5 to 2x faster, slightly softer."><span>Fast mode</span>
+          <label class="toggle turbo-lock" data-i18n-title="form.fastTitle" title="EasyCache reuses similar steps. About 1.5 to 2x faster, slightly softer."><span data-i18n="form.fast">Fast mode</span>
             <span class="switch"><input type="checkbox" id="fast"><span></span></span></label>
-          <div class="field turbo-lock" id="fastTh"><div class="label">Cache threshold <span class="val" id="fastThVal">0.20</span></div>
+          <div class="field turbo-lock" id="fastTh"><div class="label"><span data-i18n="form.fastTh">Cache threshold</span> <span class="val" id="fastThVal">0.20</span></div>
             <input type="range" id="fastThreshold" min="0.05" max="0.5" step="0.05" value="0.2"></div>
-          <label class="toggle" title="Rough image after every step. Runs without the warm engine, so each job starts about 20 s slower."><span>Live preview</span>
+          <label class="toggle" data-i18n-title="form.previewTitle" title="Rough image after every step. Runs without the warm engine, so each job starts about 20 s slower."><span data-i18n="form.preview">Live preview</span>
             <span class="switch"><input type="checkbox" id="preview"><span></span></span></label>
           <div class="row turbo-lock">
-            <div class="field"><div class="label">Sampler</div><select id="sampler"></select></div>
-            <div class="field"><div class="label">Scheduler</div><select id="scheduler"></select></div>
+            <div class="field"><div class="label" data-i18n="form.sampler">Sampler</div><select id="sampler"></select></div>
+            <div class="field"><div class="label" data-i18n="form.scheduler">Scheduler</div><select id="scheduler"></select></div>
           </div>
-          <div class="field turbo-lock"><div class="label">Flow shift <span class="val" id="shiftVal">auto</span></div>
+          <div class="field turbo-lock"><div class="label"><span data-i18n="form.shift">Flow shift</span> <span class="val" id="shiftVal">auto</span></div>
             <input type="range" id="shift" min="0" max="8" step="0.5" value="0"></div>
-          <label class="toggle" title="A desktop notification when a job finishes and this tab is in the background. Private jobs don't show their prompt."><span>Notify when done</span>
+          <label class="toggle" data-i18n-title="form.notifyTitle" title="A desktop notification when a job finishes and this tab is in the background. Private jobs don't show their prompt."><span data-i18n="form.notify">Notify when done</span>
             <span class="switch"><input type="checkbox" id="notify"><span></span></span></label>
-          <div class="field" title="Optional rest between GPU jobs.">
-            <div class="label">Queue delay</div>
-            <div class="seg" id="cooldown"><button data-v="off" class="on">Off</button><button data-v="30">30 s</button><button data-v="60">60 s</button><button data-v="90">90 s</button></div>
+          <div class="field" data-i18n-title="form.cooldownTitle" title="Optional rest between GPU jobs.">
+            <div class="label" data-i18n="form.cooldown">Queue delay</div>
+            <div class="seg" id="cooldown"><button data-v="off" class="on" data-i18n="form.off">Off</button><button data-v="30">30 s</button><button data-v="60">60 s</button><button data-v="90">90 s</button></div>
           </div>
-          <div class="field" title="Keep warm reuses the loaded native INT8 model for the next image, skipping startup and model loading. A warm engine holds some GPU memory and RAM until it times out or you unload it. Off releases everything after each image.">
-            <div class="label">Engine</div>
-            <div class="enginerow"><span class="dotw" id="engDot"></span><span id="engTxt">Cold</span>
-              <span style="margin-left:auto">keep warm</span>
-              <select id="warmMin"><option value="0">Off</option><option value="2">2</option><option value="5" selected>5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option></select><span>min</span>
-              <button class="linkbtn" id="unload">Unload</button></div>
+          <div class="field" data-i18n-title="form.warmTitle" title="Keep warm reuses the loaded native INT8 model for the next image, skipping startup and model loading. A warm engine holds some GPU memory and RAM until it times out or you unload it. Off releases everything after each image.">
+            <div class="label" data-i18n="form.engine">Engine</div>
+            <div class="enginerow"><span class="dotw" id="engDot"></span><span id="engTxt" data-i18n="engine.cold">Cold</span>
+              <span style="margin-left:auto" data-i18n="form.keepWarm">keep warm</span>
+              <select id="warmMin"><option value="0" data-i18n="form.offOption">Off</option><option value="2">2</option><option value="5" selected>5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option></select><span data-i18n="form.minutes">min</span>
+              <button class="linkbtn" id="unload" data-i18n="form.unload">Unload</button></div>
           </div>
         </div>
       </details>
     </div>
     <div class="foot">
-      <div class="est"><span>Estimated time</span><b id="est"></b></div>
-      <div class="warn hidden" id="memWarn">Large size. Start at 512 px on a 4 GB GPU.</div>
+      <div class="est"><span data-i18n="form.estimate">Estimated time</span><b id="est"></b></div>
+      <div class="warn hidden" id="memWarn" data-i18n="form.memWarn">Large size. Start at 512 px on a 4 GB GPU.</div>
       <div class="err hidden" id="formErr"></div>
-      <button class="go" id="go"><span id="goLabel">Generate</span><kbd>Ctrl ↵</kbd></button>
+      <button class="go" id="go"><span id="goLabel" data-i18n="button.generate">Generate</span><kbd>Ctrl ↵</kbd></button>
     </div>
   </aside>
 
   <main>
     <section class="stage">
       <div class="canvas" id="canvas">
-        <div class="empty" id="empty"><h2>Ready</h2>Write a prompt to generate an image with MOSS.</div>
+        <div class="empty" id="empty"><h2 data-i18n="stage.ready">Ready</h2><span data-i18n="stage.readyHint">Write a prompt to generate an image with MOSS.</span></div>
         <img id="stageImg" class="hidden" alt="">
         <span class="badge hidden" id="stageBadge"></span>
       </div>
       <div class="side">
         <div class="card">
-          <h3>Now running</h3>
-          <div id="idle" style="color:var(--faint);font-size:13px">Idle</div>
+          <h3 data-i18n="run.title">Now running</h3>
+          <div id="idle" style="color:var(--faint);font-size:13px" data-i18n="run.idle">Idle</div>
           <div id="cooling" class="hidden" style="font-size:13px">
-            <div class="stagetxt"><span>Cooling down</span><span id="coolLeft"></span></div>
+            <div class="stagetxt"><span data-i18n="run.cooling">Cooling down</span><span id="coolLeft"></span></div>
             <p id="coolWhy" style="font-size:12.5px;color:var(--muted);margin:6px 0 10px"></p>
-            <button class="linkbtn" id="skipCool">Skip</button>
+            <button class="linkbtn" id="skipCool" data-i18n="run.skip">Skip</button>
           </div>
           <div id="running" class="hidden">
             <div class="stagetxt"><span id="stageName">-</span><span id="stepTxt"></span></div>
             <div class="bar"><i id="barFill"></i></div>
             <div class="stats">
-              <div>Speed<b id="spi">-</b></div>
-              <div>Remaining<b id="eta">-</b></div>
-              <div>Elapsed<b id="elapsed">-</b></div>
-              <div>Engine<b id="runEngine">-</b></div>
+              <div><span data-i18n="stats.speed">Speed</span><b id="spi">-</b></div>
+              <div><span data-i18n="stats.remaining">Remaining</span><b id="eta">-</b></div>
+              <div><span data-i18n="stats.elapsed">Elapsed</span><b id="elapsed">-</b></div>
+              <div><span data-i18n="stats.engine">Engine</span><b id="runEngine">-</b></div>
             </div>
             <p id="runPrompt" style="font-size:12.5px;color:var(--muted);margin:12px 0 10px;max-height:60px;overflow:hidden"></p>
-            <button class="linkbtn danger" id="cancelRun">Cancel</button>
+            <button class="linkbtn danger" id="cancelRun" data-i18n="run.cancel">Cancel</button>
           </div>
         </div>
         <div class="card">
-          <h3>Queue <span class="qbtns"><button id="pauseQ">Pause</button><button id="clearQ">Clear finished</button></span></h3>
-          <div class="queue" id="queue"><div style="color:var(--faint);font-size:13px">Empty</div></div>
+          <h3><span data-i18n="queue.title">Queue</span> <span class="qbtns"><button id="pauseQ" data-i18n="queue.pause">Pause</button><button id="clearQ" data-i18n="queue.clear">Clear finished</button></span></h3>
+          <div class="queue" id="queue"><div style="color:var(--faint);font-size:13px" data-i18n="queue.empty">Empty</div></div>
         </div>
       </div>
     </section>
 
     <section class="privtray hidden" id="privTray">
-      <div class="gal-head"><h2>Private session</h2><span><button class="linkbtn danger" id="discardAll">Discard all</button></span></div>
+      <div class="gal-head"><h2 data-i18n="private.title">Private session</h2><span><button class="linkbtn danger" id="discardAll" data-i18n="private.discardAll">Discard all</button></span></div>
       <div style="height:12px"></div>
       <div class="gallery" id="privGallery"></div>
     </section>
 
     <section id="galSection">
-      <div class="gal-head"><h2>Gallery</h2><span><span id="galCount"></span> <button class="linkbtn" id="selectBtn">Select</button></span></div>
+      <div class="gal-head"><h2 data-i18n="gallery.title">Gallery</h2><span><span id="galCount"></span> <button class="linkbtn" id="selectBtn" data-i18n="gallery.selectMode">Select</button></span></div>
       <div class="galtools">
-        <input type="text" id="search" placeholder="Search prompts">
-        <div class="seg" id="typeFilter"><button data-v="all" class="on">All</button><button data-v="edit">Edits</button><button data-v="gen">Generated</button><button data-v="upscale">Upscaled</button></div>
-        <div class="seg" id="whenFilter"><button data-v="any" class="on">Any time</button><button data-v="today">Today</button><button data-v="week">7 days</button></div>
+        <input type="text" id="search" data-i18n-placeholder="gallery.search" placeholder="Search prompts">
+        <div class="seg" id="typeFilter"><button data-v="all" class="on" data-i18n="filter.all">All</button><button data-v="edit" data-i18n="filter.edits">Edits</button><button data-v="gen" data-i18n="filter.generated">Generated</button><button data-v="upscale" data-i18n="filter.upscaled">Upscaled</button></div>
+        <div class="seg" id="whenFilter"><button data-v="any" class="on" data-i18n="filter.anyTime">Any time</button><button data-v="today" data-i18n="filter.today">Today</button><button data-v="week" data-i18n="filter.week">7 days</button></div>
       </div>
-      <div class="selbar hidden" id="selBar"><b id="selCount">0 selected</b>
-        <button class="linkbtn" id="selAll">Select all</button>
-        <button class="linkbtn" id="selZip">Download</button>
-        <button class="linkbtn" id="selCompare">Compare</button>
-        <button class="linkbtn danger" id="selDelete">Delete</button>
-        <button class="linkbtn" id="selDone">Done</button></div>
+      <div class="selbar hidden" id="selBar"><b id="selCount" data-i18n="gallery.selectedCount">0 selected</b>
+        <button class="linkbtn" id="selAll" data-i18n="sel.all">Select all</button>
+        <button class="linkbtn" id="selZip" data-i18n="sel.download">Download</button>
+        <button class="linkbtn" id="selCompare" data-i18n="sel.compare">Compare</button>
+        <button class="linkbtn danger" id="selDelete" data-i18n="sel.delete">Delete</button>
+        <button class="linkbtn" id="selDone" data-i18n="sel.done">Done</button></div>
       <div style="height:12px"></div>
       <div class="gallery" id="gallery"></div>
     </section>
@@ -463,25 +463,25 @@ textarea.bulk { min-height: 220px; }
       <img id="lbImg" alt="">
       <div class="before hidden" id="before"><img id="lbBefore" alt=""></div>
       <div class="handle hidden" id="handle"></div>
-      <span class="lbl hidden" id="lblB" style="left:10px">before</span>
-      <span class="lbl hidden" id="lblA" style="right:10px">after</span>
+      <span class="lbl hidden" id="lblB" style="left:10px" data-i18n="viewer.before">before</span>
+      <span class="lbl hidden" id="lblA" style="right:10px" data-i18n="viewer.after">after</span>
     </div>
     <button class="nav" id="next" style="right:18px">›</button>
   </div>
   <div class="info">
-    <button class="linkbtn close" id="lbClose">Close ✕</button>
+    <button class="linkbtn close" id="lbClose" data-i18n="viewer.close">Close ✕</button>
     <div class="prompt" id="lbPrompt"></div>
     <div class="prompt hidden" id="lbPrompt2"></div>
-    <div id="histWrap" class="hidden"><div class="sectitle">History</div><div style="height:10px"></div><div class="history" id="history"></div></div>
+    <div id="histWrap" class="hidden"><div class="sectitle" data-i18n="viewer.history">History</div><div style="height:10px"></div><div class="history" id="history"></div></div>
     <dl class="kv" id="lbMeta"></dl>
     <div class="btns" id="lbBtns">
-      <button class="linkbtn primary" id="lbEdit">Edit this image</button>
-      <button class="linkbtn" id="lbReuse">Reuse settings</button>
-      <button class="linkbtn" id="lbVary">New variation</button>
-      <div class="upsc"><button class="linkbtn" id="lbUp2" title="ESRGAN, then scaled to 2×">Upscale 2×</button><button class="linkbtn" id="lbUp4" title="ESRGAN 4×">Upscale 4×</button></div>
-      <a class="linkbtn" id="lbDl" download style="text-align:center;text-decoration:none">Download</a>
-      <button class="linkbtn hidden" id="lbKeep">Keep in gallery</button>
-      <button class="linkbtn danger" id="lbDel">Delete</button>
+      <button class="linkbtn primary" id="lbEdit" data-i18n="viewer.edit">Edit this image</button>
+      <button class="linkbtn" id="lbReuse" data-i18n="viewer.reuse">Reuse settings</button>
+      <button class="linkbtn" id="lbVary" data-i18n="viewer.variation">New variation</button>
+      <div class="upsc"><button class="linkbtn" id="lbUp2" data-i18n="viewer.up2" data-i18n-title="viewer.up2Title" title="ESRGAN, then scaled to 2×">Upscale 2×</button><button class="linkbtn" id="lbUp4" data-i18n="viewer.up4" data-i18n-title="viewer.up4Title" title="ESRGAN 4×">Upscale 4×</button></div>
+      <a class="linkbtn" id="lbDl" download style="text-align:center;text-decoration:none" data-i18n="viewer.download">Download</a>
+      <button class="linkbtn hidden" id="lbKeep" data-i18n="viewer.keep">Keep in gallery</button>
+      <button class="linkbtn danger" id="lbDel" data-i18n="viewer.delete">Delete</button>
     </div>
   </div>
 </div>
@@ -489,36 +489,36 @@ textarea.bulk { min-height: 220px; }
 <div class="modal" id="askModal" role="dialog" aria-modal="true" aria-labelledby="askMsg">
   <div class="bar2" style="flex-direction:column;max-width:420px;padding:16px 18px;gap:14px">
     <div id="askMsg" style="font-size:14px;color:var(--text);text-align:center"></div>
-    <div style="display:flex;gap:8px;justify-content:center"><button id="askCancel">Cancel</button><button class="primary" id="askOk">OK</button></div>
+    <div style="display:flex;gap:8px;justify-content:center"><button id="askCancel" data-i18n="modal.cancel">Cancel</button><button class="primary" id="askOk" data-i18n="modal.ok">OK</button></div>
   </div>
 </div>
 <div class="modal" id="maskModal">
   <div class="bar2">
-    <label>Brush <input type="range" id="brush" min="8" max="200" value="48"></label>
-    <div class="seg" id="maskTool" style="width:auto"><button data-v="paint" class="on">Paint</button><button data-v="erase">Erase</button></div>
+    <label><span data-i18n="mask.brush">Brush</span> <input type="range" id="brush" min="8" max="200" value="48"></label>
+    <div class="seg" id="maskTool" style="width:auto"><button data-v="paint" class="on" data-i18n="mask.paint">Paint</button><button data-v="erase" data-i18n="mask.erase">Erase</button></div>
     <span class="sep"></span>
-    <button class="linkbtn" id="maskInvert">Invert</button>
-    <button class="linkbtn" id="maskClear">Clear</button>
+    <button class="linkbtn" id="maskInvert" data-i18n="mask.invert">Invert</button>
+    <button class="linkbtn" id="maskClear" data-i18n="mask.clear">Clear</button>
     <span class="sep"></span>
-    <button class="linkbtn" id="maskCancel">Cancel</button>
-    <button class="linkbtn primary" id="maskDone">Use mask</button>
+    <button class="linkbtn" id="maskCancel" data-i18n="mask.cancel">Cancel</button>
+    <button class="linkbtn primary" id="maskDone" data-i18n="mask.apply">Use mask</button>
   </div>
   <div class="paint" id="maskPaint"><img id="maskImg" alt=""><canvas id="maskCanvas"></canvas></div>
-  <div class="hint">Paint over the area to change. Everything else stays exactly as it is.</div>
+  <div class="hint" data-i18n="mask.hint">Paint over the area to change. Everything else stays exactly as it is.</div>
 </div>
 
 <div class="modal" id="cropModal">
   <div class="bar2">
-    <button class="linkbtn" id="rotL" title="Rotate left">⟲</button>
-    <button class="linkbtn" id="rotR" title="Rotate right">⟳</button>
-    <button class="linkbtn" id="flipH" title="Flip horizontally">⇋</button>
+    <button class="linkbtn" id="rotL" data-i18n-title="crop.rotateLeft" title="Rotate left">⟲</button>
+    <button class="linkbtn" id="rotR" data-i18n-title="crop.rotateRight" title="Rotate right">⟳</button>
+    <button class="linkbtn" id="flipH" data-i18n-title="crop.flip" title="Flip horizontally">⇋</button>
     <span class="sep"></span>
-    <button class="linkbtn" id="cropReset">Reset</button>
-    <button class="linkbtn" id="cropCancel">Cancel</button>
-    <button class="linkbtn primary" id="cropDone">Apply</button>
+    <button class="linkbtn" id="cropReset" data-i18n="crop.reset">Reset</button>
+    <button class="linkbtn" id="cropCancel" data-i18n="crop.cancel">Cancel</button>
+    <button class="linkbtn primary" id="cropDone" data-i18n="crop.apply">Apply</button>
   </div>
   <div class="paint" id="cropPaint"><canvas id="cropCanvas" style="position:static"></canvas><div class="croprect hidden" id="cropRect"></div></div>
-  <div class="hint">Drag on the image to crop. Leave it empty to keep the whole image.</div>
+  <div class="hint" data-i18n="crop.hint">Drag on the image to crop. Leave it empty to keep the whole image.</div>
 </div>
 
 <div class="pop hidden" id="pop"></div>
@@ -543,7 +543,7 @@ const ask = (message, okLabel = "OK") => new Promise(resolve => {
   document.addEventListener("keydown", key); m.classList.add("open"); $("#askOk").focus();
 });
 const toast = msg => { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2400); };
-const fmtDur = s => { s = Math.max(0, Math.round(s)); if (s < 60) return s + "s"; const m = Math.floor(s / 60), r = s % 60; return m < 60 ? `${m}m ${String(r).padStart(2, "0")}s` : `${Math.floor(m / 60)}h ${m % 60}m`; };
+const fmtDur = s => { s = Math.max(0, Math.round(s)); if (s < 60) return t("unit.seconds", { n: s }); const m = Math.floor(s / 60), r = s % 60; return m < 60 ? t("unit.minutes", { m, s: String(r).padStart(2, "0") }) : t("unit.hours", { h: Math.floor(m / 60), m: m % 60 }); };
 const escapeHtml = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const show = el => el.classList.remove("hidden"), hide = el => el.classList.add("hidden");
 const pref = (k, v) => { try { if (v === undefined) return localStorage.getItem("qis." + k); localStorage.setItem("qis." + k, v); } catch (e) { return null; } };
@@ -570,6 +570,698 @@ const S = {
   library: { presets: {}, favorites: [] }, assistJobs: new Set(), paused: false,
 };
 
+/* ---------- i18n ---------- */
+// Language follows the system preference: zh* -> Simplified Chinese, anything else -> English.
+// Keep this block exactly here: tests/test_turbo_ui.js executes the presets-to-snapshot
+// slice in a bare VM, and refreshTurbo() calls t() at runtime, so t() must live inside it.
+// (No literal "presets" declaration or "snapshot" function text above, or that slice breaks.)
+function detectLang() {
+  try {
+    if (typeof navigator !== "object" || !navigator) return "en";
+    const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
+    // Any zh* tag wins, so ["en-US", "zh-CN"] still gets Chinese.
+    for (const tag of list) {
+      if (String(tag).toLowerCase().startsWith("zh")) return "zh";
+    }
+  } catch (e) { /* fall through to English */ }
+  return "en";
+}
+const LANG = detectLang();
+const I18N = {
+  en: {
+    "app.title": "MOSS Image Studio",
+    "brand.private": "🔒 Private",
+    "brand.privateTitle": "Private mode: temporary files only; no job logs or gallery metadata",
+    "brand.support": "☕ Support",
+    "brand.supportTitle": "Support MOSS Image Studio",
+    "bulk.hint": "Put an empty line between prompts",
+    "bulk.info": " prompt{s}{v} · each uses the settings below{warn}",
+    "bulk.max100": " · <span style=\"color:var(--danger)\">max 100 images at once</span>",
+    "bulk.max50": " · <span style=\"color:var(--danger)\">max 50 prompts at once</span>",
+    "bulk.variations": " × {n} variations",
+    "button.edit": "Edit",
+    "button.generate": "Generate",
+    "compare.same": "<dt>Settings</dt><dd>same</dd>",
+    "confirm.deleteMany": "Delete {n} images permanently? Their settings and logs are removed too.",
+    "confirm.deleteOne": "Delete this image permanently? Its settings and logs are removed too.",
+    "confirm.deletePreset": "Delete preset \"{name}\"?",
+    "confirm.erasePrivate": "Erase all private results? This cannot be undone.",
+    "confirm.leavePrivate": "Leave private mode? This erases {images} private image{s}{jobs}. Use Keep first to save any you want.",
+    "confirm.leavePrivateJobs": " and cancels {n} private job{s}",
+    "cool.why": "{reason}. The next job starts after a short rest.",
+    "crop.apply": "Apply",
+    "crop.cancel": "Cancel",
+    "crop.flip": "Flip horizontally",
+    "crop.hint": "Drag on the image to crop. Leave it empty to keep the whole image.",
+    "crop.reset": "Reset",
+    "crop.rotateLeft": "Rotate left",
+    "crop.rotateRight": "Rotate right",
+    "engine.busy": "Busy",
+    "engine.cold": "Cold",
+    "engine.coldShort": "cold",
+    "engine.warmIdle": "Warm · {left} left",
+    "engine.warmShort": "warm",
+    "error.addImage": "Add an image to edit.",
+    "error.writeInstruction": "Write what you want to change.",
+    "error.writePrompt": "Write a prompt first.",
+    "est.each": "≈ {each} each · {total} total",
+    "est.int8Pending": "Experimental INT8 timing pending first run",
+    "est.turboPending": "Turbo timing pending first run",
+    "filter.all": "All",
+    "filter.anyTime": "Any time",
+    "filter.edits": "Edits",
+    "filter.generated": "Generated",
+    "filter.today": "Today",
+    "filter.upscaled": "Upscaled",
+    "filter.week": "7 days",
+    "form.auto": "auto",
+    "form.bulk": "Bulk",
+    "form.bulkTitle": "Bulk: queue many prompts at once. Put an empty line between prompts.",
+    "form.cfgTitle": "How closely to follow the prompt",
+    "form.cooldown": "Queue delay",
+    "form.cooldownTitle": "Optional rest between GPU jobs.",
+    "form.custom": "Custom",
+    "form.describe": "Describe",
+    "form.describeTitle": "Unavailable assistant writes a prompt that describes image #1",
+    "form.diceTitle": "Random seed",
+    "form.dropA": "Drop, paste or",
+    "form.dropB": "an image",
+    "form.dropChoose": "choose",
+    "form.dropTitle": "You can also paste an image, or press Edit on any gallery image",
+    "form.engine": "Engine",
+    "form.estimate": "Estimated time",
+    "form.fast": "Fast mode",
+    "form.fastTh": "Cache threshold",
+    "form.fastTitle": "EasyCache reuses similar steps. About 1.5 to 2x faster, slightly softer.",
+    "form.favTitle": "Save this prompt to favorites",
+    "form.height": "Height",
+    "form.histTitle": "Recent and favorite prompts",
+    "form.images": "Images",
+    "form.imgCfg": "Image guidance",
+    "form.imgCfgTitle": "How closely to stick to the original image. 0 uses the CFG value.",
+    "form.int8Compute": "Experimental INT8 compute",
+    "form.keepWarm": "keep warm",
+    "form.lockSeedTitle": "Keep this seed for the next run",
+    "form.match": "Match",
+    "form.memWarn": "Large size. Start at 512 px on a 4 GB GPU.",
+    "form.minutes": "min",
+    "form.model": "MOSS model",
+    "form.modelBase": "BF16 Base",
+    "form.modelInt8": "INT8 Turbo 8-step · default when installed",
+    "form.modelSft": "BF16 SFT · Turbo 4-step",
+    "form.more": "More settings",
+    "form.negative": "Negative prompt",
+    "form.notify": "Notify when done",
+    "form.notifyTitle": "A desktop notification when a job finishes and this tab is in the background. Private jobs don't show their prompt.",
+    "form.off": "Off",
+    "form.offOption": "Off",
+    "form.optional": "Optional",
+    "form.preview": "Live preview",
+    "form.previewTitle": "Rough image after every step. Runs without the warm engine, so each job starts about 20 s slower.",
+    "form.privNote": "Private mode. Nothing is saved unless you download or keep it.",
+    "form.refMax": "Reference detail",
+    "form.refMaxTitle": "Resolution your image is read at. Higher keeps more detail and barely affects speed.",
+    "form.sampler": "Sampler",
+    "form.schedMatched": "Matched to size",
+    "form.schedOriginal": "Original",
+    "form.schedTitle": "Matched shifts the LoRA's schedule to your output size. It looked sharper in tests.",
+    "form.scheduler": "Scheduler",
+    "form.seed": "Seed",
+    "form.seedTitle": "-1 picks a random seed",
+    "form.shift": "Flow shift",
+    "form.steps": "Steps",
+    "form.suggest": "✨ Suggest edits",
+    "form.suggestTitle": "Unavailable assistant looks at image #1 and suggests edits",
+    "form.turboNote": "Turbo uses four Rapid-MOSS steps. CFG, negative prompt, and ordinary sampler settings are skipped.",
+    "form.turboRow": "Turbo 4-step",
+    "form.turboRowTitle": "Rapid-MOSS: four data-space steps, SFT only, no CFG or negative prompt",
+    "form.turboSched": "Turbo schedule",
+    "form.unload": "Unload",
+    "form.variations": "Variations",
+    "form.warmTitle": "Keep warm reuses the loaded native INT8 model for the next image, skipping startup and model loading. A warm engine holds some GPU memory and RAM until it times out or you unload it. Off releases everything after each image.",
+    "form.width": "Width",
+    "gallery.count": "{n} images",
+    "gallery.countFiltered": "{shown} of {total}",
+    "gallery.deleteTitle": "Delete permanently",
+    "gallery.empty": "No images yet.",
+    "gallery.noMatches": "No matches.",
+    "gallery.search": "Search prompts",
+    "gallery.selectMode": "Select",
+    "gallery.selectedCount": "0 selected",
+    "gallery.title": "Gallery",
+    "hist.emptyFav": "Star a prompt to keep it here.",
+    "hist.emptyRecent": "No recent prompts.",
+    "hist.favorites": "Favorites",
+    "hist.recent": "Recent",
+    "hist.unfav": "Remove from favorites",
+    "info.default": "CUDA · WeeLLM streaming · 4 GB preset · text to image",
+    "info.int8Bf16": "Experimental · eight steps · BF16 decode · CFG 1",
+    "info.int8Missing": "Optional download: download.ps1 -Model INT8 · original BF16 kept",
+    "info.int8Native": "Experimental · eight steps · native INT8 compute · CFG 1",
+    "label.instruction": "Instruction",
+    "label.prompt": "Prompt",
+    "label.size": "Size",
+    "label.speed": "Speed",
+    "mask.apply": "Use mask",
+    "mask.brush": "Brush",
+    "mask.cancel": "Cancel",
+    "mask.clear": "Clear",
+    "mask.erase": "Erase",
+    "mask.hint": "Paint over the area to change. Everything else stays exactly as it is.",
+    "mask.invert": "Invert",
+    "mask.paint": "Paint",
+    "meta.backend": "Backend",
+    "meta.cfg": "CFG",
+    "meta.compute": "Compute",
+    "meta.fast": "Fast mode",
+    "meta.fastOn": "on ({th})",
+    "meta.file": "File",
+    "meta.height": "Height",
+    "meta.imgCfg": "Image CFG",
+    "meta.int8Kernel": "INT8 kernel",
+    "meta.mask": "Mask",
+    "meta.model": "Model",
+    "meta.nativeCalls": "Native INT8 calls",
+    "meta.negative": "Negative",
+    "meta.peakAllocated": "Peak allocated",
+    "meta.peakReserved": "Peak reserved",
+    "meta.promptCache": "Prompt cache",
+    "meta.sampler": "Sampler",
+    "meta.seed": "Seed",
+    "meta.size": "Size",
+    "meta.speed": "Speed",
+    "meta.steps": "Steps",
+    "meta.time": "Time",
+    "meta.turbo": "Turbo",
+    "meta.turboSampler": "Rapid-MOSS four-step data-space sampler",
+    "meta.weightFormat": "Weight format",
+    "meta.width": "Width",
+    "meta.yes": "yes",
+    "modal.cancel": "Cancel",
+    "modal.ok": "OK",
+    "notify.appName": "MOSS Image Studio",
+    "notify.doneTitle": "✓ Done · MOSS Image Studio",
+    "notify.privateReady": "Your private result is ready.",
+    "notify.upscaled": "Upscale finished",
+    "placeholder.bulkEdit": "Make his hat red\n\nTurn it into a rainy night\n\nOne instruction per paragraph, with an empty line between them.",
+    "placeholder.bulkGen": "A woman with freckles, soft window light\n\nStudio portrait, dark backdrop, rim light\n\nOne prompt per paragraph, with an empty line between them.",
+    "placeholder.edit": "Describe the change, e.g. make his hat red",
+    "placeholder.gen": "Describe the image",
+    "preset.balanced": "Balanced",
+    "preset.balancedTitle": "Full model at 768 px, 30 steps",
+    "preset.deleteTitle": "Delete this preset",
+    "preset.draft": "Draft",
+    "preset.draftTitle": "Full model at 512 px, 12 steps",
+    "preset.mine": "My presets",
+    "preset.mineTitle": "Your saved settings",
+    "preset.namePlaceholder": "Preset name",
+    "preset.quality": "Quality",
+    "preset.qualityTitle": "Full model at 1024 px, 50 steps. Slow, for finals.",
+    "preset.save": "Save",
+    "preset.saveTitle": "Save current settings as a preset",
+    "preset.statusDefault": "Turbo is the default when its adapter is installed.",
+    "preset.statusInt8": "Experimental INT8 uses its own eight-step sampler",
+    "preset.statusNeedsSft": "Turbo requires MOSS-Image SFT",
+    "preset.statusReady": "Turbo ready · four steps · default preset",
+    "preset.statusSetup": "Turbo setup: run download.ps1 -Model Turbo",
+    "preset.turbo": "⚡ Turbo 4-step",
+    "preset.turboNeedDownload": "Run download.ps1 -Model Turbo to install the adapter",
+    "preset.turboNeedSft": "Select MOSS-Image SFT to use Turbo",
+    "preset.turboReady": "Four Rapid-MOSS steps with WeeLLM streaming",
+    "preset.turboTitle": "Download the Turbo adapter to enable this SFT preset",
+    "private.discard": "Discard",
+    "private.discardAll": "Discard all",
+    "private.empty": "Nothing here yet.",
+    "private.eraseLeave": "Erase and leave",
+    "private.keep": "Keep",
+    "private.title": "Private session",
+    "queue.clear": "Clear finished",
+    "queue.down": "Move down",
+    "queue.empty": "Empty",
+    "queue.pause": "Pause",
+    "queue.resume": "Resume",
+    "queue.title": "Queue",
+    "queue.up": "Move up",
+    "ref.crop": "Crop",
+    "ref.cropTitle": "Crop or rotate",
+    "ref.mask": "Mask",
+    "ref.maskOn": "Mask ✓",
+    "ref.maskTitle": "Paint the area to change",
+    "ref.masked": "masked",
+    "ref.remove": "Remove",
+    "run.cancel": "Cancel",
+    "run.cooling": "Cooling down",
+    "run.idle": "Idle",
+    "run.perStep": "{v} s/step",
+    "run.skip": "Skip",
+    "run.starting": "Starting",
+    "run.step": "step {i}/{n}",
+    "run.title": "Now running",
+    "sel.all": "Select all",
+    "sel.compare": "Compare",
+    "sel.count": "{n} selected",
+    "sel.delete": "Delete",
+    "sel.done": "Done",
+    "sel.download": "Download",
+    "stage.adapterCleanup": "Adapter cleanup",
+    "stage.adapterSetup": "Adapter setup",
+    "stage.editing": "editing this image…",
+    "stage.generation": "Generation",
+    "stage.imports": "Startup",
+    "stage.livePreview": "live preview · step {i}/{n}",
+    "stage.modelLoad": "Model loading",
+    "stage.pngSave": "PNG saving",
+    "stage.privateHead": "Private",
+    "stage.privateHint": "Nothing is saved unless you keep it.",
+    "stage.promptEncode": "Prompt encoding",
+    "stage.reading": "reading this image…",
+    "stage.ready": "Ready",
+    "stage.readyHint": "Write a prompt to generate an image with MOSS.",
+    "stage.sampling": "Sampling",
+    "stage.upscaling": "upscaling…",
+    "stage.vaeDecode": "Image decoding",
+    "stage.workerTotal": "Worker total",
+    "state.cancelled": "cancelled",
+    "state.done": "done",
+    "state.error": "error",
+    "state.queued": "queued",
+    "state.running": "running",
+    "state.starting": "starting",
+    "stats.elapsed": "Elapsed",
+    "stats.engine": "Engine",
+    "stats.remaining": "Remaining",
+    "stats.speed": "Speed",
+    "tab.generate": "Generate",
+    "tag.editMask": "edit · mask",
+    "task.describe": "describe",
+    "task.edit": "edit",
+    "task.gen": "gen",
+    "task.suggest": "suggest",
+    "task.upscale": "upscale",
+    "toast.added": "Added. Now describe the change.",
+    "toast.assistantFailed": "The assistant failed",
+    "toast.cancelled": "Cancelled",
+    "toast.deleted": "Deleted",
+    "toast.deletedN": "Deleted {n}",
+    "toast.describing": "Describing the image…",
+    "toast.descriptionAdded": "Description added to the prompt",
+    "toast.engineUnloaded": "Engine unloaded",
+    "toast.favRemoved": "Removed from favorites",
+    "toast.favSaved": "Saved to favorites",
+    "toast.imageUpdated": "Image updated",
+    "toast.looking": "Looking at the image…",
+    "toast.maskCleared": "Mask cleared",
+    "toast.maskSet": "Mask set. Only the painted area will change.",
+    "toast.maxRefs": "Up to 3 reference images",
+    "toast.noSettings": "No settings saved for this image",
+    "toast.notifyBlocked": "Notifications are blocked for this page",
+    "toast.originalUpload": "That's the original upload",
+    "toast.presetApplied": "Preset applied",
+    "toast.presetSaved": "Preset saved",
+    "toast.privateErased": "Private session erased",
+    "toast.privateOff": "Private mode off · session erased",
+    "toast.privateOn": "Private mode on",
+    "toast.queued": "Queued",
+    "toast.queuedN": "Queued {n}",
+    "toast.reuseOnly": "Reuse works on generated or edited images",
+    "toast.saved": "Saved",
+    "toast.savedToGallery": "Saved to gallery",
+    "toast.selectFirst": "Select some images first",
+    "toast.settingsLoaded": "Settings loaded",
+    "toast.settingsNewSeed": "Settings loaded with a new seed",
+    "toast.upscaleQueued": "Upscale {scale}× queued",
+    "toast.warmOff": "Keep warm off",
+    "toast.warmSaved": "Keep warm saved",
+    "unit.hours": "{h}h {m}m",
+    "unit.minutes": "{m}m {s}s",
+    "unit.seconds": "{n}s",
+    "viewer.after": "after",
+    "viewer.before": "before",
+    "viewer.close": "Close ✕",
+    "viewer.delete": "Delete",
+    "viewer.discard": "Discard",
+    "viewer.download": "Download",
+    "viewer.edit": "Edit this image",
+    "viewer.history": "History",
+    "viewer.keep": "Keep in gallery",
+    "viewer.openVersion": "Open this version",
+    "viewer.originalUpload": "Original upload",
+    "viewer.reuse": "Reuse settings",
+    "viewer.up2": "Upscale 2×",
+    "viewer.up2Title": "ESRGAN, then scaled to 2×",
+    "viewer.up4": "Upscale 4×",
+    "viewer.up4Title": "ESRGAN 4×",
+    "viewer.upscaled": "Upscaled ×{scale} · ",
+    "viewer.variation": "New variation",
+  },
+  zh: {
+    "app.title": "MOSS 图像工作室",
+    "brand.private": "🔒 私密",
+    "brand.privateTitle": "私密模式：只用临时文件，不写任务日志，也不写相册元数据",
+    "brand.support": "☕ 支持作者",
+    "brand.supportTitle": "支持 MOSS 图像工作室",
+    "bulk.hint": "多条提示词之间用空行分隔",
+    "bulk.info": " 条提示词{v} · 每个都用下面的设置{warn}",
+    "bulk.max100": " · <span style=\"color:var(--danger)\">一次最多 100 张</span>",
+    "bulk.max50": " · <span style=\"color:var(--danger)\">一次最多 50 条提示词</span>",
+    "bulk.variations": " × {n} 个变体",
+    "button.edit": "编辑",
+    "button.generate": "生成",
+    "compare.same": "<dt>设置</dt><dd>相同</dd>",
+    "confirm.deleteMany": "永久删除 {n} 张图？它们的设置和日志也会一起删掉。",
+    "confirm.deleteOne": "永久删除这张图？它的设置和日志也会一起删掉。",
+    "confirm.deletePreset": "删除预设「{name}」？",
+    "confirm.erasePrivate": "清空所有私密结果？此操作不可撤销。",
+    "confirm.leavePrivate": "离开私密模式？这会删除 {images} 张私密图{jobs}。想留下的先点「保存」。",
+    "confirm.leavePrivateJobs": "，并取消 {n} 个私密任务",
+    "cool.why": "{reason}。稍作休息后开始下一个任务。",
+    "crop.apply": "应用",
+    "crop.cancel": "取消",
+    "crop.flip": "水平翻转",
+    "crop.hint": "在图上拖出裁剪框，不拖则保留整张图。",
+    "crop.reset": "重置",
+    "crop.rotateLeft": "向左旋转",
+    "crop.rotateRight": "向右旋转",
+    "engine.busy": "使用中",
+    "engine.cold": "冷启",
+    "engine.coldShort": "冷启",
+    "engine.warmIdle": "热载 · 剩 {left}",
+    "engine.warmShort": "热载",
+    "error.addImage": "先加一张要编辑的图。",
+    "error.writeInstruction": "写一下你想改什么。",
+    "error.writePrompt": "先写一段提示词。",
+    "est.each": "≈ 每张 {each} · 共 {total}",
+    "est.int8Pending": "实验性 INT8 计时待首次运行后确定",
+    "est.turboPending": "Turbo 计时待首次运行后确定",
+    "filter.all": "全部",
+    "filter.anyTime": "不限时间",
+    "filter.edits": "编辑",
+    "filter.generated": "生成",
+    "filter.today": "今天",
+    "filter.upscaled": "放大",
+    "filter.week": "7 天",
+    "form.auto": "自动",
+    "form.bulk": "批量",
+    "form.bulkTitle": "批量：一次排队多条提示词，每条之间空一行。",
+    "form.cfgTitle": "跟随提示词的程度",
+    "form.cooldown": "任务间隔",
+    "form.cooldownTitle": "GPU 任务之间可选的小憩。",
+    "form.custom": "自定义",
+    "form.describe": "描述",
+    "form.describeTitle": "助手（当前不可用）会写一段描述第 1 张图的提示词",
+    "form.diceTitle": "随机种子",
+    "form.dropA": "拖放、粘贴或",
+    "form.dropB": "图片",
+    "form.dropChoose": "选择",
+    "form.dropTitle": "也可以直接粘贴图片，或在相册里点任意一张的「编辑」",
+    "form.engine": "引擎",
+    "form.estimate": "预计耗时",
+    "form.fast": "快速模式",
+    "form.fastTh": "缓存阈值",
+    "form.fastTitle": "EasyCache 复用相近的步，约快 1.5–2 倍，画面略软。",
+    "form.favTitle": "把这条提示词存为收藏",
+    "form.height": "高",
+    "form.histTitle": "最近用过的和收藏的提示词",
+    "form.images": "参考图",
+    "form.imgCfg": "图像引导",
+    "form.imgCfgTitle": "贴近原图的程度。填 0 则沿用 CFG 的值。",
+    "form.int8Compute": "实验性 INT8 计算",
+    "form.keepWarm": "保持热载",
+    "form.lockSeedTitle": "下一张继续用这个种子",
+    "form.match": "匹配",
+    "form.memWarn": "尺寸偏大。4 GB 显卡建议从 512 px 起步。",
+    "form.minutes": "分钟",
+    "form.model": "MOSS 模型",
+    "form.modelBase": "BF16 Base",
+    "form.modelInt8": "INT8 Turbo 8 步 · 装好即默认",
+    "form.modelSft": "BF16 SFT · Turbo 4 步",
+    "form.more": "更多设置",
+    "form.negative": "负面提示词",
+    "form.notify": "完成后通知",
+    "form.notifyTitle": "任务完成、且本页在后台时弹桌面通知。私密任务不会显示提示词。",
+    "form.off": "关闭",
+    "form.offOption": "关闭",
+    "form.optional": "可选",
+    "form.preview": "实时预览",
+    "form.previewTitle": "每一步后给一张粗图。因为不走热载引擎，每个任务启动会慢约 20 秒。",
+    "form.privNote": "私密模式。不下载、不保存，就什么都不留。",
+    "form.refMax": "参考图细节",
+    "form.refMaxTitle": "参考图的读取分辨率。越高保留越多细节，速度几乎不受影响。",
+    "form.sampler": "采样器",
+    "form.schedMatched": "匹配尺寸",
+    "form.schedOriginal": "原始",
+    "form.schedTitle": "「匹配尺寸」会把 LoRA 的调度对齐到你的输出尺寸，测试里更锐利。",
+    "form.scheduler": "调度器",
+    "form.seed": "种子",
+    "form.seedTitle": "-1 表示随机种子",
+    "form.shift": "流偏移",
+    "form.steps": "步数",
+    "form.suggest": "✨ 建议修改",
+    "form.suggestTitle": "助手（当前不可用）会看第 1 张图并给出修改建议",
+    "form.turboNote": "Turbo 走四步 Rapid-MOSS，会跳过 CFG、负面提示词和普通采样器设置。",
+    "form.turboRow": "Turbo 4 步",
+    "form.turboRowTitle": "Rapid-MOSS：四步数据空间采样，仅限 SFT，不用 CFG 和负面提示词",
+    "form.turboSched": "Turbo 调度",
+    "form.unload": "卸载",
+    "form.variations": "变体数量",
+    "form.warmTitle": "「保持热载」会把已加载的原生 INT8 模型留给下一张图，省掉启动和加载模型的时间。热载会占着一些显存和内存，直到超时或你手动卸载。选「关闭」则每张图后释放全部资源。",
+    "form.width": "宽",
+    "gallery.count": "{n} 张",
+    "gallery.countFiltered": "{shown} / {total} 张",
+    "gallery.deleteTitle": "永久删除",
+    "gallery.empty": "还没有图片。",
+    "gallery.noMatches": "没有匹配项。",
+    "gallery.search": "搜索提示词",
+    "gallery.selectMode": "选择",
+    "gallery.selectedCount": "已选 0 张",
+    "gallery.title": "相册",
+    "hist.emptyFav": "点星标把提示词存到这里。",
+    "hist.emptyRecent": "还没有最近的提示词。",
+    "hist.favorites": "收藏",
+    "hist.recent": "最近",
+    "hist.unfav": "取消收藏",
+    "info.default": "CUDA · WeeLLM 流式加载 · 4 GB 预设 · 文生图",
+    "info.int8Bf16": "实验性 · 八步 · BF16 解码 · CFG 1",
+    "info.int8Missing": "可选下载：download.ps1 -Model INT8 · 原有 BF16 保留",
+    "info.int8Native": "实验性 · 八步 · 原生 INT8 计算 · CFG 1",
+    "label.instruction": "指令",
+    "label.prompt": "提示词",
+    "label.size": "尺寸",
+    "label.speed": "速度",
+    "mask.apply": "使用遮罩",
+    "mask.brush": "笔刷",
+    "mask.cancel": "取消",
+    "mask.clear": "清除",
+    "mask.erase": "擦除",
+    "mask.hint": "涂出要改的区域，其余部分保持原样。",
+    "mask.invert": "反选",
+    "mask.paint": "涂抹",
+    "meta.backend": "后端",
+    "meta.cfg": "CFG",
+    "meta.compute": "计算方式",
+    "meta.fast": "快速模式",
+    "meta.fastOn": "开（{th}）",
+    "meta.file": "文件",
+    "meta.height": "高度",
+    "meta.imgCfg": "图像 CFG",
+    "meta.int8Kernel": "INT8 内核",
+    "meta.mask": "遮罩",
+    "meta.model": "模型",
+    "meta.nativeCalls": "原生 INT8 调用",
+    "meta.negative": "负面提示词",
+    "meta.peakAllocated": "峰值已分配",
+    "meta.peakReserved": "峰值已保留",
+    "meta.promptCache": "提示词缓存",
+    "meta.sampler": "采样器",
+    "meta.seed": "种子",
+    "meta.size": "尺寸",
+    "meta.speed": "速度",
+    "meta.steps": "步数",
+    "meta.time": "耗时",
+    "meta.turbo": "Turbo",
+    "meta.turboSampler": "Rapid-MOSS 四步数据空间采样器",
+    "meta.weightFormat": "权重格式",
+    "meta.width": "宽度",
+    "meta.yes": "是",
+    "modal.cancel": "取消",
+    "modal.ok": "确定",
+    "notify.appName": "MOSS Image Studio",
+    "notify.doneTitle": "✓ 完成 · MOSS Image Studio",
+    "notify.privateReady": "你的隐私结果已就绪。",
+    "notify.upscaled": "放大完成",
+    "placeholder.bulkEdit": "把帽子改成红色\n\n变成雨夜\n\n每段一条指令，段与段之间空一行。",
+    "placeholder.bulkGen": "一个脸上有雀斑的女生，柔和的窗光\n\n棚拍肖像，深色背景，轮廓光\n\n每段一条提示词，段与段之间空一行。",
+    "placeholder.edit": "描述要改什么，例如：把帽子改成红色",
+    "placeholder.gen": "描述你想要的画面",
+    "preset.balanced": "均衡",
+    "preset.balancedTitle": "完整模型，768 px，30 步",
+    "preset.deleteTitle": "删除这个预设",
+    "preset.draft": "草稿",
+    "preset.draftTitle": "完整模型，512 px，12 步",
+    "preset.mine": "我的预设",
+    "preset.mineTitle": "你保存过的设置",
+    "preset.namePlaceholder": "预设名称",
+    "preset.quality": "高质量",
+    "preset.qualityTitle": "完整模型，1024 px，50 步。慢，适合出终稿。",
+    "preset.save": "保存",
+    "preset.saveTitle": "把当前设置存为预设",
+    "preset.statusDefault": "装好 Turbo 适配器后，它会是默认选项。",
+    "preset.statusInt8": "实验性 INT8 使用自带的八步采样器",
+    "preset.statusNeedsSft": "Turbo 需要 MOSS-Image SFT",
+    "preset.statusReady": "Turbo 就绪 · 四步 · 默认预设",
+    "preset.statusSetup": "安装 Turbo：运行 download.ps1 -Model Turbo",
+    "preset.turbo": "⚡ Turbo 4 步",
+    "preset.turboNeedDownload": "运行 download.ps1 -Model Turbo 安装适配器",
+    "preset.turboNeedSft": "选择 MOSS-Image SFT 才能使用 Turbo",
+    "preset.turboReady": "四步 Rapid-MOSS + WeeLLM 流式加载",
+    "preset.turboTitle": "先下载 Turbo 适配器才能启用这个 SFT 预设",
+    "private.discard": "丢弃",
+    "private.discardAll": "全部丢弃",
+    "private.empty": "这里还没有内容。",
+    "private.eraseLeave": "清空并离开",
+    "private.keep": "保存",
+    "private.title": "私密会话",
+    "queue.clear": "清除已完成",
+    "queue.down": "下移",
+    "queue.empty": "空",
+    "queue.pause": "暂停",
+    "queue.resume": "继续",
+    "queue.title": "队列",
+    "queue.up": "上移",
+    "ref.crop": "裁剪",
+    "ref.cropTitle": "裁剪或旋转",
+    "ref.mask": "遮罩",
+    "ref.maskOn": "遮罩 ✓",
+    "ref.maskTitle": "涂出要改的区域",
+    "ref.masked": "已遮罩",
+    "ref.remove": "移除",
+    "run.cancel": "取消",
+    "run.cooling": "冷却中",
+    "run.idle": "空闲",
+    "run.perStep": "{v} 秒/步",
+    "run.skip": "跳过",
+    "run.starting": "启动中",
+    "run.step": "第 {i}/{n} 步",
+    "run.title": "当前任务",
+    "sel.all": "全选",
+    "sel.compare": "对比",
+    "sel.count": "已选 {n} 张",
+    "sel.delete": "删除",
+    "sel.done": "完成",
+    "sel.download": "下载",
+    "stage.adapterCleanup": "清理适配器",
+    "stage.adapterSetup": "加载适配器",
+    "stage.editing": "正在编辑这张图…",
+    "stage.generation": "生成",
+    "stage.imports": "启动",
+    "stage.livePreview": "实时预览 · 第 {i}/{n} 步",
+    "stage.modelLoad": "加载模型",
+    "stage.pngSave": "保存 PNG",
+    "stage.privateHead": "私密",
+    "stage.privateHint": "不保存到相册，点「保存」才会留下。",
+    "stage.promptEncode": "编码提示词",
+    "stage.reading": "正在读取这张图…",
+    "stage.ready": "准备就绪",
+    "stage.readyHint": "写一段提示词，用 MOSS 生成图像。",
+    "stage.sampling": "采样",
+    "stage.upscaling": "正在放大…",
+    "stage.vaeDecode": "解码图像",
+    "stage.workerTotal": "进程总耗时",
+    "state.cancelled": "已取消",
+    "state.done": "完成",
+    "state.error": "出错",
+    "state.queued": "排队中",
+    "state.running": "运行中",
+    "state.starting": "启动中",
+    "stats.elapsed": "已用",
+    "stats.engine": "引擎",
+    "stats.remaining": "剩余",
+    "stats.speed": "速度",
+    "tab.generate": "生成",
+    "tag.editMask": "编辑 · 遮罩",
+    "task.describe": "描述",
+    "task.edit": "编辑",
+    "task.gen": "生成",
+    "task.suggest": "建议",
+    "task.upscale": "放大",
+    "toast.added": "已加入。现在描述要改什么。",
+    "toast.assistantFailed": "助手执行失败",
+    "toast.cancelled": "已取消",
+    "toast.deleted": "已删除",
+    "toast.deletedN": "已删除 {n} 张",
+    "toast.describing": "正在描述这张图…",
+    "toast.descriptionAdded": "描述已加入提示词",
+    "toast.engineUnloaded": "引擎已卸载",
+    "toast.favRemoved": "已取消收藏",
+    "toast.favSaved": "已加入收藏",
+    "toast.imageUpdated": "图像已更新",
+    "toast.looking": "正在看图…",
+    "toast.maskCleared": "遮罩已清除",
+    "toast.maskSet": "遮罩已设置，只有涂过的区域会变。",
+    "toast.maxRefs": "最多 3 张参考图",
+    "toast.noSettings": "这张图没有保存设置",
+    "toast.notifyBlocked": "本页的通知权限被拒绝了",
+    "toast.originalUpload": "这是最初上传的原图",
+    "toast.presetApplied": "已套用预设",
+    "toast.presetSaved": "预设已保存",
+    "toast.privateErased": "私密会话已清空",
+    "toast.privateOff": "已关闭私密模式 · 会话已清空",
+    "toast.privateOn": "已开启私密模式",
+    "toast.queued": "已加入队列",
+    "toast.queuedN": "已加入队列（{n} 个）",
+    "toast.reuseOnly": "只有生成或编辑过的图能复用设置",
+    "toast.saved": "已保存",
+    "toast.savedToGallery": "已保存到相册",
+    "toast.selectFirst": "先选几张图",
+    "toast.settingsLoaded": "设置已载入",
+    "toast.settingsNewSeed": "已载入设置，并换了新种子",
+    "toast.upscaleQueued": "已加入队列：放大 {scale}×",
+    "toast.warmOff": "已关闭保持热载",
+    "toast.warmSaved": "保持热载已保存",
+    "unit.hours": "{h} 小时 {m} 分",
+    "unit.minutes": "{m} 分 {s} 秒",
+    "unit.seconds": "{n} 秒",
+    "viewer.after": "处理后",
+    "viewer.before": "原图",
+    "viewer.close": "关闭 ✕",
+    "viewer.delete": "删除",
+    "viewer.discard": "丢弃",
+    "viewer.download": "下载",
+    "viewer.edit": "编辑这张图",
+    "viewer.history": "历史",
+    "viewer.keep": "保存到相册",
+    "viewer.openVersion": "打开这个版本",
+    "viewer.originalUpload": "原始上传",
+    "viewer.reuse": "复用设置",
+    "viewer.up2": "放大 2×",
+    "viewer.up2Title": "ESRGAN 放大后再缩放到 2×",
+    "viewer.up4": "放大 4×",
+    "viewer.up4Title": "ESRGAN 4× 放大",
+    "viewer.upscaled": "已放大 {scale}× · ",
+    "viewer.variation": "再来一张",
+  },
+};
+function t(key, vars) {
+  const table = I18N[LANG] || I18N.en;
+  let text = table[key];
+  if (text === undefined) {
+    text = I18N.en[key];
+    if (text === undefined) {
+      if (typeof console === "object") console.warn("[i18n] missing key: " + key);
+      return key;
+    }
+  }
+  if (vars) text = String(text).replace(/\{(\w+)\}/g, (match, name) => (vars[name] !== undefined ? vars[name] : match));
+  return text;
+}
+// Static markup keeps its English text as the fallback; this pass applies the dictionary once.
+function applyStaticI18n() {
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.title = t("app.title");
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-title]").forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+}
 // ---------- presets ----------
 function applyDefaultPreset() {
   if (S.defaultsApplied) return;
@@ -582,11 +1274,11 @@ function refreshTurbo(ready = S.turboReady) {
   const button = $('#presets [data-p="turbo"]');
   button.disabled = !S.turboOk;
   $("#turbo").disabled = !S.turboOk;
-  button.title = S.turboOk ? "Four Rapid-MOSS steps with WeeLLM streaming" : ready ? "Select MOSS-Image SFT to use Turbo" : "Run download.ps1 -Model Turbo to install the adapter";
+  button.title = S.turboOk ? t("preset.turboReady") : ready ? t("preset.turboNeedSft") : t("preset.turboNeedDownload");
   $("#turboRow").classList.toggle("locked", !S.turboOk);
-  $("#turboStatus").textContent = S.turboOk ? "Turbo ready · four steps · default preset" : ready ? "Turbo requires MOSS-Image SFT" : "Turbo setup: run download.ps1 -Model Turbo";
+  $("#turboStatus").textContent = S.turboOk ? t("preset.statusReady") : ready ? t("preset.statusNeedsSft") : t("preset.statusSetup");
   if (!S.turboOk && $("#turbo").checked) applyPreset("draft");
-  if ($("#model").value === "toxicdog/MOSS-Image-SFT-Turbo-INT8-ConvRot") $("#turboStatus").textContent = "Experimental INT8 uses its own eight-step sampler";
+  if ($("#model").value === "toxicdog/MOSS-Image-SFT-Turbo-INT8-ConvRot") $("#turboStatus").textContent = t("preset.statusInt8");
 }
 function applyPreset(k) {
   const p = PRESETS[k]; S.preset = k;
@@ -635,7 +1327,7 @@ function restore(p) {
 }
 function renderPresets() {
   const sel = $("#myPresets"), cur = sel.value;
-  sel.innerHTML = `<option value="">My presets</option>` + Object.keys(S.library.presets).map(n => `<option>${escapeHtml(n)}</option>`).join("");
+  sel.innerHTML = `<option value="">${t("preset.mine")}</option>` + Object.keys(S.library.presets).map(n => `<option>${escapeHtml(n)}</option>`).join("");
   sel.value = S.library.presets[cur] ? cur : "";
   $("#delPreset").classList.toggle("hidden", !sel.value);
 }
@@ -646,7 +1338,7 @@ function buildStatic() {
   $("#styleChips").innerHTML = Object.keys(STYLES).map(k => `<button data-s="${k}">+ ${k}</button>`).join("");
   $("#editChips").innerHTML = EDITS.map(e => `<button>${e.trim()}…</button>`).join("");
   $("#aspects").innerHTML = ASPECTS.map(([k, w, h]) => {
-    if (k === "match") return `<button data-a="match" class="edit-only hidden"><span class="shape" style="width:16px;height:16px;border-style:dashed"></span>Match</button>`;
+    if (k === "match") return `<button data-a="match" class="edit-only hidden"><span class="shape" style="width:16px;height:16px;border-style:dashed"></span>${t("form.match")}</button>`;
     const sc = 18 / Math.max(w, h);
     return `<button data-a="${k}"><span class="shape" style="width:${w * sc}px;height:${h * sc}px"></span>${k}</button>`;
   }).join("");
@@ -657,7 +1349,7 @@ function setMode(mode) {
   $$("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
   $$(".edit-only").forEach(el => el.classList.toggle("hidden", mode !== "edit"));
   $$(".gen-only").forEach(el => el.classList.toggle("hidden", mode !== "gen"));
-  $("#promptLabel").textContent = mode === "edit" ? "Instruction" : "Prompt";
+  $("#promptLabel").textContent = mode === "edit" ? t("label.instruction") : t("label.prompt");
   setPlaceholder();
   if (mode === "edit" && S.refs.length && S.aspect !== "match") setAspect("match");
   if (mode === "gen" && S.aspect === "match") setAspect("1:1");
@@ -673,9 +1365,9 @@ function promptList() {
 function setPlaceholder() {
   const edit = S.mode === "edit";
   $("#prompt").placeholder = S.bulk
-    ? (edit ? "Make his hat red\n\nTurn it into a rainy night\n\nOne instruction per paragraph, with an empty line between them."
-            : "A woman with freckles, soft window light\n\nStudio portrait, dark backdrop, rim light\n\nOne prompt per paragraph, with an empty line between them.")
-    : (edit ? "Describe the change, e.g. make his hat red" : "Describe the image");
+    ? (edit ? t("placeholder.bulkEdit")
+            : t("placeholder.bulkGen"))
+    : (edit ? t("placeholder.edit") : t("placeholder.gen"));
 }
 function setBulk(on) {
   S.bulk = on; pref("bulk", on ? "1" : "0");
@@ -714,28 +1406,28 @@ function update() {
   $("#customSize").classList.toggle("hidden", S.base !== "custom");
   $("#stepsVal").textContent = $("#steps").value;
   $("#cfgVal").textContent = (+$("#cfg").value).toFixed(1);
-  $("#imgCfgVal").textContent = +$("#imgCfg").value ? (+$("#imgCfg").value).toFixed(1) : "auto";
+  $("#imgCfgVal").textContent = +$("#imgCfg").value ? (+$("#imgCfg").value).toFixed(1) : t("form.auto");
   $("#batchVal").textContent = $("#batch").value;
   $("#fastThVal").textContent = (+$("#fastThreshold").value).toFixed(2);
   $("#fastTh").classList.toggle("hidden", !$("#fast").checked);
-  $("#shiftVal").textContent = +$("#shift").value ? (+$("#shift").value).toFixed(1) : "auto";
+  $("#shiftVal").textContent = +$("#shift").value ? (+$("#shift").value).toFixed(1) : t("form.auto");
   $("#refMaxVal").textContent = S.refMax + " px";
   $("#refcount").textContent = `${S.refs.length} / 3`;
   $("#lockSeed").classList.toggle("on", S.seedLocked);
   syncPreset();
   const { secs, mp } = estimate(), n = +$("#batch").value, count = S.bulk ? promptList().length : 1, total = Math.max(1, count) * n;
-  $("#est").textContent = total > 1 ? `≈ ${fmtDur(secs)} each · ${fmtDur(secs * total)} total` : "≈ " + fmtDur(secs);
-  if ($("#turbo").checked && !S.calib.gen_rapid4) $("#est").textContent = "Turbo timing pending first run";
+  $("#est").textContent = total > 1 ? t("est.each", { each: fmtDur(secs), total: fmtDur(secs * total) }) : "≈ " + fmtDur(secs);
+  if ($("#turbo").checked && !S.calib.gen_rapid4) $("#est").textContent = t("est.turboPending");
   const int8Selected = $("#model").value === "toxicdog/MOSS-Image-SFT-Turbo-INT8-ConvRot";
   $("#int8ComputeRow").classList.toggle("hidden", !int8Selected);
   if (int8Selected) {
     const native = $("#int8Compute").value === "native";
-    $("#modelInfo").textContent = S.int8Ready ? (native ? "Experimental · eight steps · native INT8 compute · CFG 1" : "Experimental · eight steps · BF16 decode · CFG 1") : "Optional download: download.ps1 -Model INT8 · original BF16 kept";
-    if (!S.calib[native ? "gen_int8native8" : "gen_int8flow8"]) $("#est").textContent = "Experimental INT8 timing pending first run";
-  } else $("#modelInfo").textContent = "CUDA · WeeLLM streaming · 4 GB preset · text to image";
-  $("#goLabel").textContent = (S.mode === "edit" ? "Edit" : "Generate") + (total > 1 ? ` ${total}` : "");
+    $("#modelInfo").textContent = S.int8Ready ? (native ? t("info.int8Native") : t("info.int8Bf16")) : t("info.int8Missing");
+    if (!S.calib[native ? "gen_int8native8" : "gen_int8flow8"]) $("#est").textContent = t("est.int8Pending");
+  } else $("#modelInfo").textContent = t("info.default");
+  $("#goLabel").textContent = t(S.mode === "edit" ? "button.edit" : "button.generate") + (total > 1 ? ` ${total}` : "");
   $("#bulkInfo").classList.toggle("hidden", !S.bulk);
-  if (S.bulk) $("#bulkInfo").innerHTML = count ? `<b>${count}</b> prompt${count > 1 ? "s" : ""}${n > 1 ? ` × ${n} variations` : ""} · each uses the settings below` + (total > 100 ? ` · <span style="color:var(--danger)">max 100 images at once</span>` : count > 50 ? ` · <span style="color:var(--danger)">max 50 prompts at once</span>` : "") : "Put an empty line between prompts";
+  if (S.bulk) $("#bulkInfo").innerHTML = count ? `<b>${count}</b>` + t("bulk.info", { s: count > 1 ? "s" : "", v: n > 1 ? t("bulk.variations", { n }) : "", warn: total > 100 ? t("bulk.max100") : count > 50 ? t("bulk.max50") : "" }) : t("bulk.hint");
   $("#memWarn").classList.toggle("hidden", mp <= 1.35);
   $("#drop").classList.toggle("hidden", S.refs.length >= 3);
   $("#assist").classList.toggle("hidden", !S.refs.length || !S.assistOk);
@@ -746,14 +1438,14 @@ function update() {
 function renderRefs() {
   if (S.mask && (!S.refs.length || S.refs[0].name !== S.mask.forRef)) S.mask = null;
   $("#refs").innerHTML = S.refs.map((r, i) => `<div class="ref"><img src="/ref/${encodeURIComponent(r.name)}" alt="">
-    <span class="tools">${i === 0 ? `<button data-act="mask" title="Paint the area to change">${S.mask ? "Mask ✓" : "Mask"}</button>` : ""}<button data-act="crop" data-i="${i}" title="Crop or rotate">Crop</button></span>
-    <span class="n">#${i + 1} · ${r.width}×${r.height}</span>${i === 0 && S.mask ? `<span class="badge2">masked</span>` : ""}
-    <button data-act="remove" data-i="${i}" title="Remove">×</button></div>`).join("");
+    <span class="tools">${i === 0 ? `<button data-act="mask" title="${t("ref.maskTitle")}">${S.mask ? t("ref.maskOn") : t("ref.mask")}</button>` : ""}<button data-act="crop" data-i="${i}" title="${t("ref.cropTitle")}">${t("ref.crop")}</button></span>
+    <span class="n">#${i + 1} · ${r.width}×${r.height}</span>${i === 0 && S.mask ? `<span class="badge2">${t("ref.masked")}</span>` : ""}
+    <button data-act="remove" data-i="${i}" title="${t("ref.remove")}">×</button></div>`).join("");
   if (S.mode === "edit" && S.refs.length && S.base !== "custom") setAspect("match");
   update();
 }
 function addRef(r) {
-  if (S.refs.length >= 3) return toast("Up to 3 reference images");
+  if (S.refs.length >= 3) return toast(t("toast.maxRefs"));
   S.refs.push(r); renderRefs();
 }
 async function upload(dataUrl, filename, kind = "image") {
@@ -837,7 +1529,7 @@ async function applyCrop() {
   try {
     const r = await upload(out.toDataURL("image/png"), "crop");
     if (CR.index === 0) S.mask = null;
-    S.refs[CR.index] = r; renderRefs(); toast("Image updated");
+    S.refs[CR.index] = r; renderRefs(); toast(t("toast.imageUpdated"));
   } catch (e) { toast(e.message); }
   closeModal("#cropModal");
 }
@@ -849,18 +1541,18 @@ async function assist(task) {
   try {
     const { ids } = await post("/api/jobs", { mode: "assist", task, source: S.refs[0].name });
     ids.forEach(id => S.assistJobs.add(id));
-    toast(task === "suggest" ? "Looking at the image…" : "Describing the image…"); poll();
+    toast(task === "suggest" ? t("toast.looking") : t("toast.describing")); poll();
   } catch (e) { toast(e.message); }
 }
 function handleAssist(j) {
   S.assistJobs.delete(j.id);
-  if (j.state !== "done") return toast(j.error || "The assistant failed");
+  if (j.state !== "done") return toast(j.error || t("toast.assistantFailed"));
   if (j.task === "suggest") {
     const ideas = j.result || [];
     $("#aiChips").innerHTML = ideas.map(t => `<button>${escapeHtml(t)}</button>`).join("");
     $("#aiChips").classList.toggle("hidden", !ideas.length);
   } else {
-    $("#prompt").value = j.result || ""; update(); toast("Description added to the prompt");
+    $("#prompt").value = j.result || ""; update(); toast(t("toast.descriptionAdded"));
   }
 }
 
@@ -886,9 +1578,9 @@ function openPop(anchor, html, onClick) {
 }
 function openHistory() {
   const favs = S.library.favorites, recent = recentPrompts().filter(p => !favs.includes(p));
-  const row = (p, fav) => `<div class="item" data-p="${escapeHtml(p)}"><span>${escapeHtml(p)}</span>${fav ? `<button data-unfav="${escapeHtml(p)}" title="Remove from favorites">✕</button>` : ""}</div>`;
-  openPop($("#histBtn"), `<h4>Favorites</h4>${favs.map(p => row(p, true)).join("") || `<div class="empty">Star a prompt to keep it here.</div>`}
-    <h4>Recent</h4>${recent.map(p => row(p)).join("") || `<div class="empty">No recent prompts.</div>`}`, e => {
+  const row = (p, fav) => `<div class="item" data-p="${escapeHtml(p)}"><span>${escapeHtml(p)}</span>${fav ? `<button data-unfav="${escapeHtml(p)}" title="${t("hist.unfav")}">✕</button>` : ""}</div>`;
+  openPop($("#histBtn"), `<h4>${t("hist.favorites")}</h4>${favs.map(p => row(p, true)).join("") || `<div class="empty">${t("hist.emptyFav")}</div>`}
+    <h4>${t("hist.recent")}</h4>${recent.map(p => row(p)).join("") || `<div class="empty">${t("hist.emptyRecent")}</div>`}`, e => {
     const un = e.target.closest("[data-unfav]");
     if (un) { e.stopPropagation(); saveLibrary({ favorites: S.library.favorites.filter(x => x !== un.dataset.unfav) }).then(openHistory); return; }
     const it = e.target.closest(".item"); if (!it) return;
@@ -900,8 +1592,8 @@ function openHistory() {
 async function submit() {
   const prompt = $("#prompt").value.trim(), err = $("#formErr");
   hide(err);
-  if (!promptList().length) { err.textContent = S.mode === "edit" ? "Write what you want to change." : "Write a prompt first."; return show(err); }
-  if (S.mode === "edit" && !S.refs.length) { err.textContent = "Add an image to edit."; return show(err); }
+  if (!promptList().length) { err.textContent = S.mode === "edit" ? t("error.writeInstruction") : t("error.writePrompt"); return show(err); }
+  if (S.mode === "edit" && !S.refs.length) { err.textContent = t("error.addImage"); return show(err); }
   const [width, height] = outSize();
   const spec = {
     model: $("#model").value, int8_compute: $("#int8Compute").value, mode: S.mode, prompt, bulk: !!S.bulk, negative: $("#negative").value, width, height,
@@ -913,7 +1605,7 @@ async function submit() {
   };
   try {
     const { ids } = await post("/api/jobs", spec);
-    toast((S.private ? "🔒 " : "") + (ids.length > 1 ? `Queued ${ids.length}` : "Queued"));
+    toast((S.private ? "🔒 " : "") + (ids.length > 1 ? t("toast.queuedN", { n: ids.length }) : t("toast.queued")));
     if (!S.seedLocked) $("#seed").value = -1;
     poll();
   } catch (e) { err.textContent = e.message; show(err); }
@@ -948,8 +1640,8 @@ async function poll() {
     }
     const eng = st.engine || { state: st.engine_warm ? "busy" : "cold", idle_left: 0 };
     $("#engDot").classList.toggle("on", eng.state !== "cold");
-    $("#engTxt").textContent = eng.state === "warm" ? `Warm · ${fmtDur(eng.idle_left)} left` : eng.state === "busy" ? "Busy" : "Cold";
-    $("#pauseQ").textContent = st.paused ? "Resume" : "Pause";
+    $("#engTxt").textContent = eng.state === "warm" ? t("engine.warmIdle", { left: fmtDur(eng.idle_left) }) : eng.state === "busy" ? t("engine.busy") : t("engine.cold");
+    $("#pauseQ").textContent = st.paused ? t("queue.resume") : t("queue.pause");
     const prev = new Map(S.jobs.map(j => [j.id, j.state]));
     S.jobs = st.jobs;
     const finished = S.polled ? S.jobs.filter(j => ["done", "error"].includes(j.state) && prev.get(j.id) && prev.get(j.id) !== j.state) : [];
@@ -968,10 +1660,10 @@ async function poll() {
   pollTimer = setTimeout(poll, busy ? 1500 : 5000);
 }
 function notifyDone(j) {
-  if (document.hidden) document.title = "✓ Done · MOSS Image Studio";
+  if (document.hidden) document.title = t("notify.doneTitle");
   if (!$("#notify").checked || !document.hidden || !("Notification" in window) || Notification.permission !== "granted") return;
-  const body = j.private ? "Your private result is ready." : (j.mode === "upscale" ? "Upscale finished" : j.prompt);
-  new Notification("MOSS Image Studio", { body, silent: false });
+  const body = j.private ? t("notify.privateReady") : (j.mode === "upscale" ? t("notify.upscaled") : j.prompt);
+  new Notification(t("notify.appName"), { body, silent: false });
 }
 
 // ---------- stage ----------
@@ -997,46 +1689,46 @@ function renderRun() {
   const cooling = !j && S.cooling > 0 && waiting;
   $("#idle").classList.toggle("hidden", !!j || cooling);
   $("#cooling").classList.toggle("hidden", !cooling);
-  if (cooling) { $("#coolLeft").textContent = fmtDur(S.cooling); $("#coolWhy").textContent = S.coolReason + ". The next job starts after a short rest."; }
+  if (cooling) { $("#coolLeft").textContent = fmtDur(S.cooling); $("#coolWhy").textContent = t("cool.why", { reason: S.coolReason }); }
   $("#running").classList.toggle("hidden", !j);
   if (j) {
     const elapsed = j.started ? Date.now() / 1000 - j.started : 0;
-    $("#stageName").textContent = j.stage || "Starting";
-    $("#stepTxt").textContent = j.total ? `step ${j.step}/${j.total}` : "";
+    $("#stageName").textContent = j.stage || t("run.starting");
+    $("#stepTxt").textContent = j.total ? t("run.step", { i: j.step, n: j.total }) : "";
     const pct = j.total ? (j.step / j.total) * 92 + 4 : Math.min(95, elapsed / Math.max(1, j.estimate || 60) * 100);
     $("#barFill").style.width = pct + "%";
-    $("#spi").textContent = j.sec_per_it ? j.sec_per_it + " s/step" : "-";
+    $("#spi").textContent = j.sec_per_it ? t("run.perStep", { v: j.sec_per_it }) : "-";
     $("#eta").textContent = j.eta != null ? fmtDur(j.eta) : (j.estimate ? "~" + fmtDur(j.estimate - elapsed) : "-");
     $("#elapsed").textContent = fmtDur(elapsed);
-    $("#runEngine").textContent = j.engine === "warm" ? "warm" : j.engine === "cold" ? "cold" : "-";
+    $("#runEngine").textContent = j.engine === "warm" ? t("engine.warmShort") : j.engine === "cold" ? t("engine.coldShort") : "-";
     $("#runPrompt").textContent = (j.private ? "🔒 " : "") + (j.mode === "edit" ? "✎ " : "") + j.prompt;
     $("#cancelRun").onclick = () => cancelJob(j.id);
     const src = j.refs && j.refs.length ? `/ref/${encodeURIComponent(j.refs[0])}` : null;
-    if (j.has_preview) setStage(`/preview/${j.id}?t=${j.step}`, `live preview · step ${j.step}/${j.total || "?"}`);
-    else if (src) setStage(src, { edit: "editing this image…", upscale: "upscaling…", assist: "reading this image…" }[j.mode] || "");
-    else { setStage(null); $("#empty").innerHTML = `<h2>${escapeHtml(j.stage || "Starting")}…</h2>`; }
+    if (j.has_preview) setStage(`/preview/${j.id}?t=${j.step}`, t("stage.livePreview", { i: j.step, n: j.total || "?" }));
+    else if (src) setStage(src, { edit: t("stage.editing"), upscale: t("stage.upscaling"), assist: t("stage.reading") }[j.mode] || "");
+    else { setStage(null); $("#empty").innerHTML = `<h2>${escapeHtml(j.stage || t("run.starting"))}…</h2>`; }
   } else {
     const v = currentView(), g = findItem(v);
     if (g) setStage(urlOf(v.kind, v.name), `${v.kind === "private" ? "🔒 " : ""}${g.meta.width || ""}×${g.meta.height || ""}`, () => openLb(v.kind, v.name));
-    else { setStage(null); $("#empty").innerHTML = S.private ? "<h2>🔒 Private</h2>Nothing is saved unless you keep it." : "<h2>Ready</h2>Write a prompt to generate an image with MOSS."; }
+    else { setStage(null); $("#empty").innerHTML = S.private ? "<h2>🔒 " + t("stage.privateHead") + "</h2>" + t("stage.privateHint") : "<h2>" + t("stage.ready") + "</h2>" + t("stage.readyHint"); }
   }
-  document.title = j ? `${j.total ? Math.round(j.step / j.total * 100) + "% · " : ""}MOSS Image Studio` : (document.title.startsWith("✓") ? document.title : "MOSS Image Studio");
+  document.title = j ? `${j.total ? Math.round(j.step / j.total * 100) + "% · " : ""}${t("app.title")}` : (document.title.startsWith("✓") ? document.title : t("app.title"));
 }
 
 // ---------- queue ----------
 function renderQueue() {
   const list = S.jobs.slice().reverse();
-  const label = j => j.mode === "assist" ? (j.task === "describe" ? "describe" : "suggest") : j.mode === "upscale" ? "upscale" : `${j.mode} ${j.width}×${j.height}`;
+  const label = j => j.mode === "assist" ? (j.task === "describe" ? t("task.describe") : t("task.suggest")) : j.mode === "upscale" ? t("task.upscale") : `${j.mode === "edit" ? t("task.edit") : t("task.gen")} ${j.width}×${j.height}`;
   $("#queue").innerHTML = list.length ? list.map(j => {
-    const status = j.state === "queued" ? `~${fmtDur(j.estimate || 0)}` : j.state === "running" ? (j.total ? `${j.step}/${j.total}` : "…") : j.state;
+    const status = j.state === "queued" ? `~${fmtDur(j.estimate || 0)}` : j.state === "running" ? (j.total ? `${j.step}/${j.total}` : "…") : t("state." + j.state);
     const live = ["queued", "running", "starting"].includes(j.state);
-    const moves = j.state === "queued" ? `<button class="mv" data-move="up" data-id="${j.id}" title="Move up">↑</button><button class="mv" data-move="down" data-id="${j.id}" title="Move down">↓</button>` : "";
+    const moves = j.state === "queued" ? `<button class="mv" data-move="up" data-id="${j.id}" title="${t("queue.up")}">↑</button><button class="mv" data-move="down" data-id="${j.id}" title="${t("queue.down")}">↓</button>` : "";
     return `<div class="qitem ${j.state}" title="${escapeHtml(j.error || j.prompt)}"><span class="dot"></span>
       <span class="p"><small>${j.private ? "🔒 " : ""}${label(j)}</small>${escapeHtml(j.prompt)}</span>
-      <span>${moves}${live ? `<button data-cancel="${j.id}" title="Cancel">✕</button>` : ""}<small style="color:var(--faint);font-family:var(--mono)">${status}</small></span></div>`;
-  }).join("") : `<div style="color:var(--faint);font-size:13px">Empty</div>`;
+      <span>${moves}${live ? `<button data-cancel="${j.id}" title="${t("run.cancel")}">✕</button>` : ""}<small style="color:var(--faint);font-family:var(--mono)">${status}</small></span></div>`;
+  }).join("") : `<div style="color:var(--faint);font-size:13px">${t("queue.empty")}</div>`;
 }
-async function cancelJob(id) { await post(`/api/jobs/${id}/cancel`); toast("Cancelled"); poll(); }
+async function cancelJob(id) { await post(`/api/jobs/${id}/cancel`); toast(t("toast.cancelled")); poll(); }
 
 // ---------- gallery ----------
 function passes(g) {
@@ -1049,22 +1741,22 @@ function passes(g) {
 const visibleGallery = () => S.gallery.filter(passes);
 async function loadGallery() { S.gallery = await api("/api/gallery"); renderGallery(); }
 function tagFor(m) {
-  if (m.mode === "upscale") return `upscale ×${m.scale || 4}`;
-  if (m.mode === "edit") return m.mask ? "edit · mask" : "edit";
+  if (m.mode === "upscale") return `${t("task.upscale")} ×${m.scale || 4}`;
+  if (m.mode === "edit") return m.mask ? t("tag.editMask") : t("task.edit");
   return "";
 }
 function renderGallery() {
   const list = visibleGallery();
-  $("#galCount").textContent = S.gallery.length ? (list.length === S.gallery.length ? `${S.gallery.length} images` : `${list.length} of ${S.gallery.length}`) : "";
+  $("#galCount").textContent = S.gallery.length ? (list.length === S.gallery.length ? t("gallery.count", { n: S.gallery.length }) : t("gallery.countFiltered", { shown: list.length, total: S.gallery.length })) : "";
   $("#galSection").classList.toggle("selecting", S.selecting);
   $("#gallery").innerHTML = list.map(g => {
     const tag = tagFor(g.meta || {});
     return `<div class="tile ${S.sel.has(g.name) ? "sel" : ""}" data-name="${escapeHtml(g.name)}">
       <img loading="lazy" src="${urlOf("gallery", g.name)}" alt="">${tag ? `<span class="tag">${tag}</span>` : ""}<span class="check"></span>
-      <div class="acts"><span data-act="edit">Edit</span><span data-act="reuse">Reuse</span><span data-act="delete" title="Delete permanently">✕</span></div>
+      <div class="acts"><span data-act="edit">${t("viewer.edit")}</span><span data-act="reuse">${t("viewer.reuse")}</span><span data-act="delete" title="${t("gallery.deleteTitle")}">✕</span></div>
     </div>`;
-  }).join("") || `<div style="color:var(--faint)">${S.gallery.length ? "No matches." : "No images yet."}</div>`;
-  $("#selCount").textContent = `${S.sel.size} selected`;
+  }).join("") || `<div style="color:var(--faint)">${S.gallery.length ? t("gallery.noMatches") : t("gallery.empty")}</div>`;
+  $("#selCount").textContent = t("sel.count", { n: S.sel.size });
   $("#selCompare").disabled = S.sel.size !== 2;
 }
 function setSelecting(on) {
@@ -1083,14 +1775,14 @@ function useForEdit(g, kind = "gallery") {
   if (!S.refs.some(r => r.name === g.name)) addRef({ name: g.name, width: g.meta.width || 1024, height: g.meta.height || 1024, private: kind === "private" });
   setMode("edit"); closeLb(); $("#prompt").value = ""; $("#prompt").focus();
   $("#aiChips").classList.add("hidden");
-  toast("Added. Now describe the change.");
+  toast(t("toast.added"));
 }
 function reuse(g, newSeed) {
   const m = g.meta;
-  if (m.model) $("#model").value = m.model; if (!m.prompt) return toast("No settings saved for this image");
+  if (m.model) $("#model").value = m.model; if (!m.prompt) return toast(t("toast.noSettings"));
   $("#int8Compute").value = m.int8_compute || "bf16";
   refreshTurbo();
-  if (m.mode === "upscale") return toast("Reuse works on generated or edited images");
+  if (m.mode === "upscale") return toast(t("toast.reuseOnly"));
   setMode(m.mode === "edit" ? "edit" : "gen");
   $("#prompt").value = m.prompt; $("#negative").value = m.negative || "";
   $("#steps").value = m.steps || 16; $("#cfg").value = m.cfg ?? 3; $("#imgCfg").value = m.img_cfg || 0;
@@ -1101,12 +1793,12 @@ function reuse(g, newSeed) {
   S.base = "custom"; $("#cw").value = m.width; $("#ch").value = m.height;
   $$("#bases button").forEach(b => b.classList.toggle("on", b.dataset.b === "custom"));
   if (m.mode === "edit" && m.refs) { S.refs = m.refs.map(r => ({ name: r, width: m.width, height: m.height })); S.mask = null; renderRefs(); }
-  closeLb(); update(); toast(newSeed ? "Settings loaded with a new seed" : "Settings loaded");
+  closeLb(); update(); toast(newSeed ? t("toast.settingsNewSeed") : t("toast.settingsLoaded"));
 }
 async function deleteImages(names) {
-  if (!await ask(names.length > 1 ? `Delete ${names.length} images permanently? Their settings and logs are removed too.` : "Delete this image permanently? Its settings and logs are removed too.", "Delete")) return false;
+  if (!await ask(names.length > 1 ? t("confirm.deleteMany", { n: names.length }) : t("confirm.deleteOne"), t("viewer.delete"))) return false;
   for (const n of names) { await api(`/api/gallery/${encodeURIComponent(n)}`, { method: "DELETE" }); forget(n); }
-  await loadGallery(); renderRun(); toast(names.length > 1 ? `Deleted ${names.length}` : "Deleted");
+  await loadGallery(); renderRun(); toast(names.length > 1 ? t("toast.deletedN", { n: names.length }) : t("toast.deleted"));
   return true;
 }
 function forget(name) {
@@ -1116,7 +1808,7 @@ function forget(name) {
   if (S.refs.some(r => r.name === name)) { S.refs = S.refs.filter(r => r.name !== name); renderRefs(); }
 }
 async function upscale(kind, name, scale) {
-  try { await post("/api/jobs", { mode: "upscale", source: name, scale }); closeLb(); toast(`Upscale ${scale}× queued`); poll(); }
+  try { await post("/api/jobs", { mode: "upscale", source: name, scale }); closeLb(); toast(t("toast.upscaleQueued", { scale })); poll(); }
   catch (e) { toast(e.message); }
 }
 
@@ -1128,8 +1820,8 @@ async function loadPrivate() {
     <div class="tile" data-name="${escapeHtml(g.name)}">
       <img src="${urlOf("private", g.name)}" alt="">
       <span class="tag">${tagFor(g.meta) ? tagFor(g.meta) + " · " : ""}${g.meta.width}×${g.meta.height}</span>
-      <div class="acts"><span data-act="edit">Edit</span><a href="${urlOf("private", g.name)}" download="${g.name}">Download</a><span data-act="keep">Keep</span><span data-act="discard" title="Discard">✕</span></div>
-    </div>`).join("") || `<div style="color:var(--faint);font-size:13px">Nothing here yet.</div>`;
+      <div class="acts"><span data-act="edit">${t("viewer.edit")}</span><a href="${urlOf("private", g.name)}" download="${g.name}">${t("viewer.download")}</a><span data-act="keep">${t("private.keep")}</span><span data-act="discard" title="${t("private.discard")}">✕</span></div>
+    </div>`).join("") || `<div style="color:var(--faint);font-size:13px">${t("private.empty")}</div>`;
 }
 function applyPrivateUI(on) {
   if (S.private === on) return;
@@ -1144,14 +1836,13 @@ async function setPrivate(on) {
   // Leaving private mode erases the private session (results and pending private jobs).
   const pending = S.jobs.filter(j => j.private && ["queued", "starting", "running"].includes(j.state)).length;
   if (!on && (S.privItems.length || pending) && !await ask(
-      `Leave private mode? This erases ${S.privItems.length} private image${S.privItems.length === 1 ? "" : "s"}` +
-      (pending ? ` and cancels ${pending} private job${pending === 1 ? "" : "s"}` : "") + ". Use Keep first to save any you want.", "Erase and leave")) return;
+      t("confirm.leavePrivate", { images: S.privItems.length, s: S.privItems.length === 1 ? "" : "s", jobs: pending ? t("confirm.leavePrivateJobs", { n: pending, s: pending === 1 ? "" : "s" }) : "" }), t("private.eraseLeave"))) return;
   await post("/api/private/mode", { on });
   if (!on && S.lb && S.lb.kind === "private") closeLb();
   S.refs = []; S.mask = null; renderRefs();
   applyPrivateUI(on);
   if (!on) { await loadPrivate(); poll(); }
-  toast(on ? "Private mode on" : "Private mode off · session erased");
+  toast(on ? t("toast.privateOn") : t("toast.privateOff"));
 }
 async function keepPrivate(name) {
   await post("/api/private/keep", { name });
@@ -1159,7 +1850,7 @@ async function keepPrivate(name) {
   await loadPrivate(); await loadGallery();
   S.view = { kind: "gallery", name };
   if (wasOpen) openLb("gallery", name); else renderRun();
-  toast("Saved to gallery");
+  toast(t("toast.savedToGallery"));
 }
 async function discardPrivate(name) {
   await post("/api/private/discard", { name });
@@ -1180,7 +1871,7 @@ function renderHistory(kind, name) {
   }
   const kids = all.filter(g => g.meta.refs && g.meta.refs[0] === name);
   if (!chain.length && !kids.length) return hide($("#histWrap"));
-  const thumb = (g, cls = "") => `<div class="h ${cls} ${g.kind === "source" ? "src" : ""}" data-kind="${g.kind}" data-name="${escapeHtml(g.name)}" title="${g.kind === "source" ? "Original upload" : "Open this version"}"><img src="${g.kind === "gallery" ? urlOf("gallery", g.name) : g.kind === "private" ? urlOf("private", g.name) : "/ref/" + encodeURIComponent(g.name)}" alt=""></div>`;
+  const thumb = (g, cls = "") => `<div class="h ${cls} ${g.kind === "source" ? "src" : ""}" data-kind="${g.kind}" data-name="${escapeHtml(g.name)}" title="${g.kind === "source" ? t("viewer.originalUpload") : t("viewer.openVersion")}"><img src="${g.kind === "gallery" ? urlOf("gallery", g.name) : g.kind === "private" ? urlOf("private", g.name) : "/ref/" + encodeURIComponent(g.name)}" alt=""></div>`;
   $("#history").innerHTML = chain.map(g => thumb(g)).join('<span class="arrow">›</span>') + (chain.length ? '<span class="arrow">›</span>' : "") +
     thumb({ name, kind }, "cur") + (kids.length ? '<span class="arrow">⤷</span>' + kids.map(g => thumb(g)).join("") : "");
   show($("#histWrap"));
@@ -1190,24 +1881,24 @@ function openLb(kind, name) {
   S.lb = { kind, name }; S.cmp = null; S.view = { kind, name };
   const m = g.meta, url = urlOf(kind, name);
   $("#lbImg").src = url; $("#lbDl").href = url; $("#lbDl").download = name;
-  $("#lbPrompt").textContent = (kind === "private" ? "🔒 " : "") + (m.mode === "edit" ? "✎ " : m.mode === "upscale" ? `Upscaled ×${m.scale} · ` : "") + (m.prompt || name);
+  $("#lbPrompt").textContent = (kind === "private" ? "🔒 " : "") + (m.mode === "edit" ? "✎ " : m.mode === "upscale" ? t("viewer.upscaled", { scale: m.scale }) : "") + (m.prompt || name);
   hide($("#lbPrompt2")); show($("#lbBtns"));
-  const rows = [["Size", m.width && `${m.width} × ${m.height}`], ["Seed", m.mode === "upscale" ? null : m.seed], ["Steps", m.mode === "upscale" ? null : m.steps], ["CFG", m.mode === "upscale" ? null : m.cfg], ["Image CFG", m.img_cfg],
-    ["Sampler", m.sampler && m.mode !== "upscale" && `${m.sampler} / ${m.scheduler || "default"}`], ["Fast mode", m.fast ? `on (${m.fast_threshold})` : null],
-    ["Turbo", m.turbo && m.mode !== "upscale" ? "Rapid-MOSS four-step data-space sampler" : null], ["Mask", m.mask ? "yes" : null],
-    ["Negative", m.negative], ["Time", m.seconds && fmtDur(m.seconds)], ["Speed", m.sec_per_it && m.sec_per_it + " s/step"], ["File", kind === "private" ? null : name]];
-  const stageLabels = {imports: "Startup", model_load: "Model loading", prompt_encode: "Prompt encoding", adapter_setup: "Adapter setup", sampling: "Sampling", adapter_cleanup: "Adapter cleanup", vae_decode: "Image decoding", png_save: "PNG saving", worker_total: "Worker total", generation: "Generation"};
-  if (m.prompt_cache) rows.push(["Prompt cache", m.prompt_cache]);
-  if (m.native_int8_stats) rows.push(["Native INT8 calls", m.native_int8_stats.linear_calls], ["INT8 kernel", m.native_int8_stats.backend]);
-  [["Model", m.model], ["Weight format", m.weight_format], ["Compute", m.compute_dtype], ["Backend", m.backend], ["Peak allocated", m.peak_allocated_mb != null ? m.peak_allocated_mb + " MiB" : null], ["Peak reserved", m.peak_reserved_mb != null ? m.peak_reserved_mb + " MiB" : null]].forEach(row => rows.push(row));
+  const rows = [[t("meta.size"), m.width && `${m.width} × ${m.height}`], [t("meta.seed"), m.mode === "upscale" ? null : m.seed], [t("meta.steps"), m.mode === "upscale" ? null : m.steps], [t("meta.cfg"), m.mode === "upscale" ? null : m.cfg], [t("meta.imgCfg"), m.img_cfg],
+    [t("meta.sampler"), m.sampler && m.mode !== "upscale" && `${m.sampler} / ${m.scheduler || "default"}`], [t("meta.fast"), m.fast ? t("meta.fastOn", { th: m.fast_threshold }) : null],
+    [t("meta.turbo"), m.turbo && m.mode !== "upscale" ? t("meta.turboSampler") : null], [t("meta.mask"), m.mask ? t("meta.yes") : null],
+    [t("meta.negative"), m.negative], [t("meta.time"), m.seconds && fmtDur(m.seconds)], [t("meta.speed"), m.sec_per_it && t("run.perStep", { v: m.sec_per_it })], [t("meta.file"), kind === "private" ? null : name]];
+  const stageLabels = {imports: t("stage.imports"), model_load: t("stage.modelLoad"), prompt_encode: t("stage.promptEncode"), adapter_setup: t("stage.adapterSetup"), sampling: t("stage.sampling"), adapter_cleanup: t("stage.adapterCleanup"), vae_decode: t("stage.vaeDecode"), png_save: t("stage.pngSave"), worker_total: t("stage.workerTotal"), generation: t("stage.generation")};
+  if (m.prompt_cache) rows.push([t("meta.promptCache"), m.prompt_cache]);
+  if (m.native_int8_stats) rows.push([t("meta.nativeCalls"), m.native_int8_stats.linear_calls], [t("meta.int8Kernel"), m.native_int8_stats.backend]);
+  [[t("meta.model"), m.model], [t("meta.weightFormat"), m.weight_format], [t("meta.compute"), m.compute_dtype], [t("meta.backend"), m.backend], [t("meta.peakAllocated"), m.peak_allocated_mb != null ? m.peak_allocated_mb + " MiB" : null], [t("meta.peakReserved"), m.peak_reserved_mb != null ? m.peak_reserved_mb + " MiB" : null]].forEach(row => rows.push(row));
   Object.entries(m.stage_seconds || {}).forEach(([key, seconds]) => {
     if (Number.isFinite(seconds)) rows.push([stageLabels[key] || key, seconds.toFixed(2) + " s"]);
   });
   $("#lbMeta").innerHTML = rows.filter(r => r[1] != null && r[1] !== "").map(([k, v]) => `<dt>${k}</dt><dd>${escapeHtml(v)}</dd>`).join("");
   const hasBefore = (m.mode === "edit" || m.mode === "upscale") && m.refs && m.refs.length;
-  setBefore(hasBefore ? `/ref/${encodeURIComponent(m.refs[0])}` : null, "before", "after");
+  setBefore(hasBefore ? `/ref/${encodeURIComponent(m.refs[0])}` : null, t("viewer.before"), t("viewer.after"));
   $("#lbKeep").classList.toggle("hidden", kind !== "private");
-  $("#lbDel").textContent = kind === "private" ? "Discard" : "Delete";
+  $("#lbDel").textContent = kind === "private" ? t("viewer.discard") : t("viewer.delete");
   $("#lbUp2").parentElement.classList.toggle("hidden", !S.upscaleOk);
   $("#lbReuse").classList.toggle("hidden", m.mode === "upscale"); $("#lbVary").classList.toggle("hidden", m.mode === "upscale");
   show($("#prev")); show($("#next"));
@@ -1223,7 +1914,7 @@ function openCompare(a, b) {
   $("#lbPrompt").textContent = "A · " + (ga.meta.prompt || a.name);
   $("#lbPrompt2").textContent = "B · " + (gb.meta.prompt || b.name); show($("#lbPrompt2"));
   const diff = ["width", "height", "seed", "steps", "cfg", "turbo", "fast", "sampler"].filter(k => ga.meta[k] !== gb.meta[k]);
-  $("#lbMeta").innerHTML = diff.map(k => `<dt>${k}</dt><dd>A ${escapeHtml(ga.meta[k] ?? "-")} · B ${escapeHtml(gb.meta[k] ?? "-")}</dd>`).join("") || "<dt>Settings</dt><dd>same</dd>";
+  $("#lbMeta").innerHTML = diff.map(k => `<dt>${t("meta." + k)}</dt><dd>A ${escapeHtml(ga.meta[k] ?? "-")} · B ${escapeHtml(gb.meta[k] ?? "-")}</dd>`).join("") || t("compare.same");
   hide($("#lbBtns")); hide($("#histWrap")); hide($("#prev")); hide($("#next"));
   $("#lb").classList.add("open");
 }
@@ -1268,24 +1959,24 @@ $("#dice").onclick = () => { $("#seed").value = Math.floor(Math.random() * 2 ** 
 $("#lockSeed").onclick = () => { S.seedLocked = !S.seedLocked; if (!S.seedLocked) $("#seed").value = -1; update(); };
 $("#go").onclick = submit;
 $("#presets").onclick = e => { const b = e.target.closest("button"); if (b) { applyPreset(b.dataset.p); $("#myPresets").value = ""; renderPresets(); } };
-$("#myPresets").onchange = () => { const p = S.library.presets[$("#myPresets").value]; if (p) { restore(p); toast("Preset applied"); } renderPresets(); };
+$("#myPresets").onchange = () => { const p = S.library.presets[$("#myPresets").value]; if (p) { restore(p); toast(t("toast.presetApplied")); } renderPresets(); };
 $("#savePreset").onclick = e => {
   e.stopPropagation();
-  openPop($("#savePreset"), `<form id="presetForm" style="display:flex;gap:6px;padding:4px"><input type="text" id="presetName" placeholder="Preset name" maxlength="40" required><button class="linkbtn">Save</button></form>`);
+  openPop($("#savePreset"), `<form id="presetForm" style="display:flex;gap:6px;padding:4px"><input type="text" id="presetName" placeholder="${t("preset.namePlaceholder")}" maxlength="40" required><button class="linkbtn">${t("preset.save")}</button></form>`);
   const f = $("#presetForm"); $("#presetName").focus();
   f.onsubmit = async ev => {
     ev.preventDefault(); const name = $("#presetName").value.trim(); if (!name) return;
-    await saveLibrary({ presets: { ...S.library.presets, [name]: snapshot() } }); $("#myPresets").value = name; renderPresets(); hide($("#pop")); toast("Preset saved");
+    await saveLibrary({ presets: { ...S.library.presets, [name]: snapshot() } }); $("#myPresets").value = name; renderPresets(); hide($("#pop")); toast(t("toast.presetSaved"));
   };
 };
 $("#delPreset").onclick = async () => {
-  const n = $("#myPresets").value; if (!n || !await ask(`Delete preset "${n}"?`, "Delete")) return;
+  const n = $("#myPresets").value; if (!n || !await ask(t("confirm.deletePreset", { name: n }), t("viewer.delete"))) return;
   const p = { ...S.library.presets }; delete p[n]; await saveLibrary({ presets: p }); $("#myPresets").value = ""; renderPresets();
 };
 $("#favBtn").onclick = () => {
-  const p = $("#prompt").value.trim(); if (!p) return toast("Write a prompt first");
+  const p = $("#prompt").value.trim(); if (!p) return toast(t("error.writePrompt"));
   const favs = S.library.favorites.includes(p) ? S.library.favorites.filter(x => x !== p) : [p, ...S.library.favorites];
-  saveLibrary({ favorites: favs }).then(() => toast(favs.includes(p) ? "Saved to favorites" : "Removed from favorites"));
+  saveLibrary({ favorites: favs }).then(() => toast(favs.includes(p) ? t("toast.favSaved") : t("toast.favRemoved")));
 };
 $("#histBtn").onclick = e => { e.stopPropagation(); $("#pop").classList.contains("hidden") ? openHistory() : hide($("#pop")); };
 document.addEventListener("click", e => { if (!e.target.closest("#pop") && !e.target.closest("#histBtn") && !e.target.closest("#savePreset")) hide($("#pop")); });
@@ -1297,18 +1988,18 @@ $("#notify").checked = pref("notify") === "1";
 $("#notify").onchange = async () => {
   if ($("#notify").checked && "Notification" in window && Notification.permission !== "granted") {
     const p = await Notification.requestPermission();
-    if (p !== "granted") { $("#notify").checked = false; toast("Notifications are blocked for this page"); }
+    if (p !== "granted") { $("#notify").checked = false; toast(t("toast.notifyBlocked")); }
   }
   pref("notify", $("#notify").checked ? "1" : "0");
 };
-$("#warmMin").onchange = () => post("/api/settings", { warm_minutes: +$("#warmMin").value }).then(() => { toast(+$("#warmMin").value ? "Keep warm saved" : "Keep warm off"); poll(); });
+$("#warmMin").onchange = () => post("/api/settings", { warm_minutes: +$("#warmMin").value }).then(() => { toast(+$("#warmMin").value ? t("toast.warmSaved") : t("toast.warmOff")); poll(); });
 $("#cooldown").onclick = e => {
   const b = e.target.closest("button"); if (!b) return;
   $$("#cooldown button").forEach(x => x.classList.toggle("on", x === b));
-  post("/api/settings", { cooldown: b.dataset.v }).then(() => toast("Saved"));
+  post("/api/settings", { cooldown: b.dataset.v }).then(() => toast(t("toast.saved")));
 };
 $("#skipCool").onclick = () => post("/api/queue/skip-cooldown").then(poll);
-$("#unload").onclick = () => post("/api/engine/stop").then(() => { toast("Engine unloaded"); poll(); });
+$("#unload").onclick = () => post("/api/engine/stop").then(() => { toast(t("toast.engineUnloaded")); poll(); });
 $("#pauseQ").onclick = () => post("/api/queue/pause", { paused: !S.paused }).then(poll);
 $("#clearQ").onclick = () => post("/api/clear").then(poll);
 $("#queue").onclick = e => {
@@ -1316,10 +2007,10 @@ $("#queue").onclick = e => {
   const m = e.target.closest("[data-move]"); if (m) post(`/api/jobs/${m.dataset.id}/${m.dataset.move}`).then(poll);
 };
 $("#discardAll").onclick = async () => {
-  if (S.privItems.length && !await ask("Erase all private results? This cannot be undone.", "Discard all")) return;
+  if (S.privItems.length && !await ask(t("confirm.erasePrivate"), t("private.discardAll"))) return;
   await post("/api/private/discard", {});
   if (S.lb && S.lb.kind === "private") closeLb();
-  S.view = null; S.refs = S.refs.filter(r => !r.private); renderRefs(); await loadPrivate(); poll(); toast("Private session erased");
+  S.view = null; S.refs = S.refs.filter(r => !r.private); renderRefs(); await loadPrivate(); poll(); toast(t("toast.privateErased"));
 };
 $("#privGallery").onclick = e => {
   if (e.target.closest("a")) return;
@@ -1342,7 +2033,7 @@ $("#whenFilter").onclick = e => { const b = e.target.closest("button"); if (!b) 
 $("#selectBtn").onclick = () => setSelecting(true);
 $("#selDone").onclick = () => setSelecting(false);
 $("#selAll").onclick = () => { visibleGallery().forEach(g => S.sel.add(g.name)); renderGallery(); };
-$("#selZip").onclick = () => S.sel.size ? zipDownload([...S.sel]) : toast("Select some images first");
+$("#selZip").onclick = () => S.sel.size ? zipDownload([...S.sel]) : toast(t("toast.selectFirst"));
 $("#selCompare").onclick = () => { const [a, b] = [...S.sel]; openCompare({ kind: "gallery", name: a }, { kind: "gallery", name: b }); };
 $("#selDelete").onclick = async () => { if (S.sel.size && await deleteImages([...S.sel])) setSelecting(false); };
 document.addEventListener("keydown", e => {
@@ -1354,7 +2045,7 @@ document.addEventListener("keydown", e => {
     if (e.key === "ArrowLeft") lbStep(-1);
   }
 });
-document.addEventListener("visibilitychange", () => { if (!document.hidden && document.title.startsWith("✓")) document.title = "MOSS Image Studio"; });
+document.addEventListener("visibilitychange", () => { if (!document.hidden && document.title.startsWith("✓")) document.title = t("notify.appName"); });
 $("#drop").onclick = () => $("#file").click();
 $("#file").onchange = e => { uploadFiles(e.target.files); e.target.value = ""; };
 ["dragover", "dragenter"].forEach(ev => document.addEventListener(ev, e => { e.preventDefault(); $("#drop").classList.add("over"); }));
@@ -1382,11 +2073,11 @@ $("#maskInvert").onclick = () => {
 $("#maskCancel").onclick = () => closeModal("#maskModal");
 $("#maskDone").onclick = async () => {
   const png = maskToPng(mc);
-  if (!png) { S.mask = null; renderRefs(); closeModal("#maskModal"); return toast("Mask cleared"); }
+  if (!png) { S.mask = null; renderRefs(); closeModal("#maskModal"); return toast(t("toast.maskCleared")); }
   try {
     const r = await upload(png, "paint", "mask");
     S.mask = { name: r.name, forRef: S.refs[0].name, overlay: mc.toDataURL("image/png") };
-    renderRefs(); toast("Mask set. Only the painted area will change.");
+    renderRefs(); toast(t("toast.maskSet"));
   } catch (e) { toast(e.message); }
   closeModal("#maskModal");
 };
@@ -1413,13 +2104,14 @@ $("#lbUp2").onclick = () => upscale(S.lb.kind, S.lb.name, 2);
 $("#lbUp4").onclick = () => upscale(S.lb.kind, S.lb.name, 4);
 $("#lbKeep").onclick = () => keepPrivate(S.lb.name);
 $("#lbDel").onclick = () => S.lb.kind === "private" ? discardPrivate(S.lb.name) : deleteImages([S.lb.name]);
-$("#history").onclick = e => { const h = e.target.closest(".h"); if (!h || h.classList.contains("cur")) return; if (h.dataset.kind === "source") return toast("That's the original upload"); openLb(h.dataset.kind, h.dataset.name); };
+$("#history").onclick = e => { const h = e.target.closest(".h"); if (!h || h.classList.contains("cur")) return; if (h.dataset.kind === "source") return toast(t("toast.originalUpload")); openLb(h.dataset.kind, h.dataset.name); };
 let dragging = false;
 $("#cmp").addEventListener("pointerdown", e => { if ($("#handle").classList.contains("hidden")) return; dragging = true; move(e); });
 window.addEventListener("pointermove", e => dragging && move(e));
 window.addEventListener("pointerup", () => dragging = false);
 function move(e) { const r = $("#cmp").getBoundingClientRect(); setSplit(Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100))); }
 
+applyStaticI18n();
 setMode("gen");
 applyPreset("draft");
 setBulk(pref("bulk") === "1");
